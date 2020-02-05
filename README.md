@@ -1,7 +1,10 @@
 # next-books-spa
+
 書籍管理SPA [Next.js]
 
-## Texhnology
+*[バックエンドリポジトリ nest-books-api](https://github.com/KotaTanaka/nest-books-api)*
+
+## Technology
 
 * [Next.js](https://nextjs.org)
 
