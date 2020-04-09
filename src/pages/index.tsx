@@ -1,8 +1,16 @@
 import React from 'react';
+import Link from 'next/link';
+
+// from app
+import { PAGE_URL } from '../constants';
 
 const Home: React.FC = () => {
   return (
-    <h1>Hello world!</h1>
+    <div>
+      <Link href={PAGE_URL.ABOUT}>
+        <a>About Page</a>
+      </Link>
+    </div>
   );
 }
 
