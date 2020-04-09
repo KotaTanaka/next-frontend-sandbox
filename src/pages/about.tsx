@@ -4,12 +4,12 @@ import React from 'react';
 import Layout from '../layout/Layout';
 import PageHeading from '../components/partials/PageHeading';
 
-const About: React.FC = () => {
+const AboutPage: React.FC = () => {
   return (
     <Layout>
-      <PageHeading title="About Page"/>
+      <PageHeading title="About Page" />
     </Layout>
   );
 }
 
-export default About;
+export default AboutPage;
