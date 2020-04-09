@@ -13,13 +13,15 @@
     "url": "git+https://github.com/KotaTanaka/next-books-spa.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kota Tanaka",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KotaTanaka/next-books-spa/issues"
   },
   "homepage": "https://github.com/KotaTanaka/next-books-spa#readme",
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "next": "^9.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
