@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 // from app
-import AppHeader from '../components/AppHeader';
+import AppHeader from '../components/partials/AppHeader';
 
 const Home: React.FC = () => {
   return (

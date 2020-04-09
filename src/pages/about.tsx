@@ -2,8 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 // from app
-import AppHeader from '../components/AppHeader';
-import PageHeading from '../components/PageHeading';
+import AppHeader from '../components/partials/AppHeader';
+import PageHeading from '../components/partials/PageHeading';
 
 const About: React.FC = () => {
   return (
