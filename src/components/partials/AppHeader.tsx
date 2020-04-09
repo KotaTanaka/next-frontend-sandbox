@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 
 // from app
-import { PAGE_URL } from '../../constants';
+import { PAGE_URL } from '@/constants';
 
 /** ヘッダー */
 const AppHeader: React.FC = () => {

@@ -3,8 +3,8 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 
 // from app
-import { PAGE_URL } from '../constants';
-import Layout from '../layout/Layout';
+import { PAGE_URL } from '@/constants';
+import Layout from '@/layout/Layout';
 
 const HomePage: React.FC = () => {
   return (

@@ -2,8 +2,8 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 // from app
-import Layout from '../../layout/Layout';
-import PageHeading from '../../components/partials/PageHeading';
+import Layout from '@/layout/Layout';
+import PageHeading from '@/components/partials/PageHeading';
 
 const BooksDetailPage: React.FC = () => {
   const router = useRouter();
