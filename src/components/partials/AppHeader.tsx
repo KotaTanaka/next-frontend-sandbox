@@ -17,7 +17,7 @@ const AppHeader: NextComponentType = () => {
       </Link>
     </Container>
   );
-}
+};
 
 export default AppHeader;
 

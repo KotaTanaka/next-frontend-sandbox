@@ -6,5 +6,5 @@ export const PAGE_URL = {
   // Book List
   BOOKS: '/books',
   // Book Detail
-  BOOK: '/books/[id]'
-}
+  BOOK: '/books/[id]',
+};

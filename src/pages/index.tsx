@@ -26,7 +26,7 @@ const HomePage: NextPage<Props> = (props: Props) => {
       </Contents>
     </Layout>
   );
-}
+};
 
 export default HomePage;
 
@@ -43,4 +43,3 @@ const LinkText = styled.a`
   cursor: pointer;
   margin: 16px;
 `;
-

@@ -1,5 +1,5 @@
 import { NextComponentType } from 'next';
-import Head from 'next/head'
+import Head from 'next/head';
 import styled from '@emotion/styled';
 
 // from app
@@ -19,7 +19,7 @@ const Layout: NextComponentType = (props) => {
       {children}
     </Container>
   );
-}
+};
 
 export default Layout;
 

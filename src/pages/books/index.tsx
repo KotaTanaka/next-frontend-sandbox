@@ -21,7 +21,7 @@ const BooksListPage: NextPage = () => {
       </Contents>
     </Layout>
   );
-}
+};
 
 export default BooksListPage;
 

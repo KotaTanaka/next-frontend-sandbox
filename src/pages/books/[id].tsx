@@ -15,6 +15,6 @@ const BooksDetailPage: NextPage = () => {
       <PageHeading title={bookId} />
     </Layout>
   );
-}
+};
 
 export default BooksDetailPage;

@@ -14,7 +14,7 @@ const PageHeading: NextComponentType<{}, {}, Props> = (props: Props) => {
       <Heading>{title}</Heading>
     </Container>
   );
-}
+};
 
 export default PageHeading;
 

@@ -10,6 +10,6 @@ const AboutPage: NextPage = () => {
       <PageHeading title="About Page" />
     </Layout>
   );
-}
+};
 
 export default AboutPage;
