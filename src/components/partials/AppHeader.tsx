@@ -1,4 +1,4 @@
-import React from 'react';
+import { NextComponentType } from 'next';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { PAGE_URL } from '@/constants';
 
 /** ヘッダー */
-const AppHeader: React.FC = () => {
+const AppHeader: NextComponentType = () => {
   return (
     <Container>
       <Link href={PAGE_URL.HOME}>
