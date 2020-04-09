@@ -1,4 +1,4 @@
-import React from 'react';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { PAGE_URL } from '@/constants';
 import Layout from '@/layout/Layout';
 
-const HomePage: React.FC = () => {
+const HomePage: NextPage = () => {
   return (
     <Layout>
       <h1>本棚</h1>

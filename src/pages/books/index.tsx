@@ -1,4 +1,4 @@
-import React from 'react';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
@@ -7,7 +7,7 @@ import { PAGE_URL } from '@/constants';
 import Layout from '@/layout/Layout';
 import PageHeading from '@/components/partials/PageHeading';
 
-const BooksListPage: React.FC = () => {
+const BooksListPage: NextPage = () => {
   return (
     <Layout>
       <PageHeading title="書籍一覧" />

@@ -1,10 +1,10 @@
-import React from 'react';
+import { NextPage } from 'next';
 
 // from app
 import Layout from '@/layout/Layout';
 import PageHeading from '@/components/partials/PageHeading';
 
-const AboutPage: React.FC = () => {
+const AboutPage: NextPage = () => {
   return (
     <Layout>
       <PageHeading title="About Page" />
