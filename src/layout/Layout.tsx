@@ -1,4 +1,5 @@
 import { NextComponentType } from 'next';
+import Head from 'next/head'
 import styled from '@emotion/styled';
 
 // from app
@@ -9,6 +10,11 @@ const Layout: NextComponentType = (props) => {
 
   return (
     <Container>
+      <Head>
+        <title>Books Management</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <AppHeader />
       {children}
     </Container>
