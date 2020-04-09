@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next -p 3010",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint:fix": "eslint --ext .ts,.tsx --fix ."
   },
   "repository": {
     "type": "git",
