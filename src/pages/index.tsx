@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
@@ -6,7 +7,15 @@ import styled from '@emotion/styled';
 import { PAGE_URL } from '@/constants';
 import Layout from '@/layout/Layout';
 
-const HomePage: NextPage = () => {
+interface Props {
+  userAgent: string;
+}
+
+const HomePage: NextPage<Props> = (props: Props) => {
+  const { userAgent } = props;
+
+  useEffect(() => console.log('User Agent:', userAgent), []);
+
   return (
     <Layout>
       <h1>本棚</h1>
@@ -20,6 +29,11 @@ const HomePage: NextPage = () => {
 }
 
 export default HomePage;
+
+HomePage.getInitialProps = async ({ req }) => {
+  const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent;
+  return { userAgent };
+};
 
 // style
 const Contents = styled.div`
