@@ -1,20 +1,14 @@
 import React from 'react';
-import styled from '@emotion/styled';
 
 // from app
-import AppHeader from '../components/partials/AppHeader';
+import Layout from '../layout/Layout';
 
 const Home: React.FC = () => {
   return (
-    <Container>
-      <AppHeader />
-    </Container>
+    <Layout>
+      <h1>本棚</h1>
+    </Layout>
   );
 }
 
 export default Home;
-
-// style
-const Container = styled.div`
-  text-align: center;
-`;

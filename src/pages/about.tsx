@@ -1,22 +1,15 @@
 import React from 'react';
-import styled from '@emotion/styled';
 
 // from app
-import AppHeader from '../components/partials/AppHeader';
+import Layout from '../layout/Layout';
 import PageHeading from '../components/partials/PageHeading';
 
 const About: React.FC = () => {
   return (
-    <Container>
-      <AppHeader />
+    <Layout>
       <PageHeading title="About Page"/>
-    </Container>
+    </Layout>
   );
 }
 
 export default About;
-
-// style
-const Container = styled.div`
-  text-align: center;
-`;
