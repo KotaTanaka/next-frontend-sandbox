@@ -1,17 +1,20 @@
 import React from 'react';
-import Link from 'next/link';
+import styled from '@emotion/styled';
 
 // from app
-import { PAGE_URL } from '../constants';
+import AppHeader from '../components/AppHeader';
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <Link href={PAGE_URL.ABOUT}>
-        <a>About Page</a>
-      </Link>
-    </div>
+    <Container>
+      <AppHeader />
+    </Container>
   );
 }
 
 export default Home;
+
+// style
+const Container = styled.div`
+  text-align: center;
+`;
