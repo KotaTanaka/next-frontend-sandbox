@@ -1,29 +1,33 @@
-# next-books-spa
+***next-books-client***
 
-書籍管理SPA [Next.js]
+*[Backend - nest-books-server](https://github.com/KotaTanaka/nest-books-server)*
 
-*[バックエンドリポジトリ nest-books-api](https://github.com/KotaTanaka/nest-books-api)*
+## About
+
+Books management web application with SSR.
 
 ## Technology
 
 * [Next.js](https://nextjs.org)
+* [TypeScript](https://github.com/microsoft/TypeScript)
+
+## Require
+
+* Node `v12.x`
 
 ## Getting Started
 
-**Install**
+#### Install
 
-```
-$ git clone git@github.com:KotaTanaka/next-books-spa.git
-```
-
-```
-$ cd next-books-spa
+```bash
+$ git clone git@github.com:KotaTanaka/next-books-client.git
+$ cd next-books-client
 $ yarn
 ```
 
-**Run**
+#### Run
 
-```
+```bash
 $ yarn dev
 ```
 
