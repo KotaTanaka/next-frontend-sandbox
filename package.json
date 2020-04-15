@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/KotaTanaka/next-books-spa#readme",
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "apollo-boost": "^0.4.7",
+    "graphql": "^15.0.0",
     "next": "^9.3.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
