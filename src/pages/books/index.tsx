@@ -21,22 +21,29 @@ const booksQuery = gql`
 const BooksListPage: NextPage = () => {
   const { loading, error, data } = useQuery(booksQuery);
 
+  // TODO ローディング
   if (loading) return <p>Loading...</p>;
+
+  // TODO エラーハンドリング
   if (error) return <p>Error! {error.message}</p>;
 
   return (
     <Layout>
       <PageHeading title="書籍一覧" />
       <Contents>
-        {data.books.map(({ id, name }) => (
-          <Link
-            key={id}
-            href={PAGE_URL.BOOK}
-            as={PAGE_URL.BOOK.replace('[id]', id)}
-          >
-            <LinkText>{name}</LinkText>
-          </Link>
-        ))}
+        <ul>
+          {data.books.map(({ id, name }) => (
+            <li>
+              <Link
+                key={id}
+                href={PAGE_URL.BOOK}
+                as={PAGE_URL.BOOK.replace('[id]', id)}
+              >
+                <LinkText>{name}</LinkText>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Contents>
     </Layout>
   );
