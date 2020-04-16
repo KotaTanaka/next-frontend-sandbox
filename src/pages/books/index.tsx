@@ -3,11 +3,14 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import styled from '@emotion/styled';
+import { Button } from 'antd';
 
 // from app
 import { PAGE_URL } from '@/constants';
 import Layout from '@/layout/Layout';
+import { useCreateBook } from '@/hooks';
 import PageHeading from '@/components/partials/PageHeading';
+import CreateBookModal from '@/components/books/CreateBookModal';
 
 const booksQuery = gql`
   {
@@ -18,8 +21,17 @@ const booksQuery = gql`
   }
 `;
 
+/** 書籍一覧ページ */
 const BooksListPage: NextPage = () => {
   const { loading, error, data } = useQuery(booksQuery);
+
+  /** 書籍登録フック */
+  const {
+    isCreateModalOpen,
+    openModal,
+    closeModal,
+    createBook,
+  } = useCreateBook();
 
   // TODO ローディング
   if (loading) return <p>Loading...</p>;
@@ -30,6 +42,9 @@ const BooksListPage: NextPage = () => {
   return (
     <Layout>
       <PageHeading title="書籍一覧" />
+      <Button type="primary" onClick={openModal}>
+        書籍登録
+      </Button>
       <Contents>
         <ul>
           {data.books.map(({ id, name }) => (
@@ -45,6 +60,11 @@ const BooksListPage: NextPage = () => {
           ))}
         </ul>
       </Contents>
+      <CreateBookModal
+        isOpen={isCreateModalOpen}
+        onOk={createBook}
+        onCancel={closeModal}
+      />
     </Layout>
   );
 };
