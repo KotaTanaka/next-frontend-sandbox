@@ -1,13 +1,12 @@
 import { NextPage } from 'next';
-import Link from 'next/link';
-import styled from '@emotion/styled';
 import { Button } from 'antd';
+import styled from '@emotion/styled';
 
 // from app
-import { PAGE_URL } from '@/constants';
 import Layout from '@/layout/Layout';
 import { useCreateBook, useGetBookList } from '@/hooks';
 import PageHeading from '@/components/partials/PageHeading';
+import BookList from '@/components/books/BookList';
 import CreateBookModal from '@/components/books/CreateBookModal';
 
 /** 書籍一覧ページ */
@@ -35,19 +34,7 @@ const BooksListPage: NextPage = () => {
         書籍登録
       </Button>
       <Contents>
-        <ul>
-          {data.books.map(({ id, name }) => (
-            <li>
-              <Link
-                key={id}
-                href={PAGE_URL.BOOK}
-                as={PAGE_URL.BOOK.replace('[id]', id)}
-              >
-                <LinkText>{name}</LinkText>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <BookList books={data.books} />
       </Contents>
       <CreateBookModal
         isOpen={isCreateModalOpen}
@@ -63,8 +50,4 @@ export default BooksListPage;
 // style
 const Contents = styled.div`
   margin-top: 64px;
-`;
-const LinkText = styled.a`
-  cursor: pointer;
-  margin: 16px;
 `;
