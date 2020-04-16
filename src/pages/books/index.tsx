@@ -27,8 +27,13 @@ const BooksListPage: NextPage = () => {
     changePrice,
     changeReleasedAt,
     resetCreateBookParams,
-    createBook,
+    sendCreateBook,
   } = useCreateBook();
+
+  const handleOkModal = async () => {
+    await sendCreateBook();
+    closeModal();
+  };
 
   const handleCancelModal = () => {
     resetCreateBookParams();
@@ -52,7 +57,7 @@ const BooksListPage: NextPage = () => {
       </Contents>
       <CreateBookModal
         isOpen={isCreateModalOpen}
-        onOk={createBook}
+        onOk={handleOkModal}
         onCancel={handleCancelModal}
         params={createBookParams}
         onChangeName={changeName}

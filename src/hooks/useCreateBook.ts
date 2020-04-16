@@ -1,10 +1,22 @@
 import { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 // from app
 import { ICreateBookBody } from '@/interfaces/book';
 
+const createBookMutation = gql`
+  mutation createBook($data: CreateBookBody!) {
+    createBook(data: $data) {
+      id
+    }
+  }
+`;
+
 /** 書籍登録フック */
 export const useCreateBook = () => {
+  const [createBook] = useMutation(createBookMutation);
+
   // prettier-ignore
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
 
@@ -62,8 +74,8 @@ export const useCreateBook = () => {
     }));
   };
 
-  const createBook = () => {
-    closeModal();
+  const sendCreateBook = async () => {
+    await createBook({ variables: { data: createBookParams } });
   };
 
   const resetCreateBookParams = () => {
@@ -91,6 +103,6 @@ export const useCreateBook = () => {
     changePrice,
     changeReleasedAt,
     resetCreateBookParams,
-    createBook,
+    sendCreateBook,
   };
 };

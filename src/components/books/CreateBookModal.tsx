@@ -7,7 +7,7 @@ import { ICreateBookBody } from '@/interfaces/book';
 
 interface Props {
   isOpen: boolean;
-  onOk: () => void;
+  onOk: () => Promise<void>;
   onCancel: () => void;
   params: ICreateBookBody;
   onChangeName: (value: string) => void;
