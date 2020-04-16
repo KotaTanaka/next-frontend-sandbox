@@ -18,8 +18,22 @@ const BooksListPage: NextPage = () => {
     isCreateModalOpen,
     openModal,
     closeModal,
+    createBookParams,
+    changeName,
+    changeOutline,
+    changeAuthor,
+    changePublisher,
+    changeCategory,
+    changePrice,
+    changeReleasedAt,
+    resetCreateBookParams,
     createBook,
   } = useCreateBook();
+
+  const handleCancelModal = () => {
+    resetCreateBookParams();
+    closeModal();
+  };
 
   // TODO ローディング
   if (loading) return <p>Loading...</p>;
@@ -39,7 +53,15 @@ const BooksListPage: NextPage = () => {
       <CreateBookModal
         isOpen={isCreateModalOpen}
         onOk={createBook}
-        onCancel={closeModal}
+        onCancel={handleCancelModal}
+        params={createBookParams}
+        onChangeName={changeName}
+        onChangeOutline={changeOutline}
+        onChangeAuthor={changeAuthor}
+        onChangePublisher={changePublisher}
+        onChangeCategory={changeCategory}
+        onChangePrice={changePrice}
+        onChangeReleasedAt={changeReleasedAt}
       />
     </Layout>
   );

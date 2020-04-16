@@ -1,39 +1,101 @@
 import { NextComponentType } from 'next';
-import { DatePicker, Form, Input, Modal } from 'antd';
+import { DatePicker, Form, Input, InputNumber, Modal } from 'antd';
+import moment from 'moment';
+
+// from app
+import { ICreateBookBody } from '@/interfaces/book';
 
 interface Props {
   isOpen: boolean;
   onOk: () => void;
   onCancel: () => void;
+  params: ICreateBookBody;
+  onChangeName: (value: string) => void;
+  onChangeOutline: (value: string) => void;
+  onChangeAuthor: (value: string) => void;
+  onChangePublisher: (value: string) => void;
+  onChangeCategory: (value: string) => void;
+  onChangePrice: (value: number) => void;
+  onChangeReleasedAt: (value: string) => void;
 }
 
 /** 書籍登録モーダル */
 const CreateBookModal: NextComponentType<{}, {}, Props> = (props: Props) => {
-  const { isOpen, onOk, onCancel } = props;
+  const {
+    isOpen,
+    onOk,
+    onCancel,
+    params,
+    onChangeName,
+    onChangeOutline,
+    onChangeAuthor,
+    onChangePublisher,
+    onChangeCategory,
+    onChangePrice,
+    onChangeReleasedAt,
+  } = props;
+
+  const handleChangeName = (e) => onChangeName(e.target.value);
+  const handleChangeOutline = (e) => onChangeOutline(e.target.value);
+  const handleChangeAuthor = (e) => onChangeAuthor(e.target.value);
+  const handleChangePublisher = (e) => onChangePublisher(e.target.value);
+  const handleChangeCategory = (e) => onChangeCategory(e.target.value);
+  const handleChangePrice = (value) => onChangePrice(value);
+  const handleChangeReleasedAt = (_, dateString) => {
+    onChangeReleasedAt(dateString);
+  };
 
   return (
     <Modal title="書籍登録" visible={isOpen} onOk={onOk} onCancel={onCancel}>
       <Form>
         <Form.Item label="タイトル" rules={[{ required: true }]}>
-          <Input placeholder="タイトル" />
+          <Input
+            placeholder="タイトル"
+            value={params.name}
+            onChange={handleChangeName}
+          />
         </Form.Item>
         <Form.Item label="あらすじ" rules={[{ required: true }]}>
-          <Input.TextArea placeholder="あらすじ" />
+          <Input.TextArea
+            placeholder="あらすじ"
+            value={params.outline}
+            onChange={handleChangeOutline}
+          />
         </Form.Item>
         <Form.Item label="著者" rules={[{ required: true }]}>
-          <Input placeholder="Basic usage" />
+          <Input
+            placeholder="著者"
+            value={params.author}
+            onChange={handleChangeAuthor}
+          />
         </Form.Item>
         <Form.Item label="出版社" rules={[{ required: true }]}>
-          <Input placeholder="Basic usage" />
+          <Input
+            placeholder="出版社"
+            value={params.publisher}
+            onChange={handleChangePublisher}
+          />
         </Form.Item>
         <Form.Item label="カテゴリー" rules={[{ required: true }]}>
-          <Input placeholder="Basic usage" />
+          <Input
+            placeholder="カテゴリー"
+            value={params.category}
+            onChange={handleChangeCategory}
+          />
         </Form.Item>
         <Form.Item label="価格" rules={[{ required: true }]}>
-          <Input placeholder="Basic usage" />
+          <InputNumber
+            placeholder="価格"
+            min={0}
+            value={params.price}
+            onChange={handleChangePrice}
+          />
         </Form.Item>
         <Form.Item label="発売日" rules={[{ required: true }]}>
-          <DatePicker />
+          <DatePicker
+            defaultValue={moment('2020-04-01', 'YYYY-MM-DD')}
+            onChange={handleChangeReleasedAt}
+          />
         </Form.Item>
       </Form>
     </Modal>
