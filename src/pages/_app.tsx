@@ -2,6 +2,7 @@ import { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import fetch from 'isomorphic-fetch';
+import 'antd/dist/antd.css';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3090/graphql',
