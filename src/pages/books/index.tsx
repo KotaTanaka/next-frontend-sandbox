@@ -1,29 +1,18 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import styled from '@emotion/styled';
 import { Button } from 'antd';
 
 // from app
 import { PAGE_URL } from '@/constants';
 import Layout from '@/layout/Layout';
-import { useCreateBook } from '@/hooks';
+import { useCreateBook, useGetBookList } from '@/hooks';
 import PageHeading from '@/components/partials/PageHeading';
 import CreateBookModal from '@/components/books/CreateBookModal';
 
-const booksQuery = gql`
-  {
-    books {
-      id
-      name
-    }
-  }
-`;
-
 /** 書籍一覧ページ */
 const BooksListPage: NextPage = () => {
-  const { loading, error, data } = useQuery(booksQuery);
+  const { loading, error, data } = useGetBookList();
 
   /** 書籍登録フック */
   const {
