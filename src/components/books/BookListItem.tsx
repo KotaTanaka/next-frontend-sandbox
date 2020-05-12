@@ -4,9 +4,10 @@ import styled from '@emotion/styled';
 
 // from app
 import { PAGE_URL } from '@/constants';
+import { IBookListElement } from '@/interfaces/response/book';
 
 interface Props {
-  book: any;
+  book: IBookListElement;
 }
 
 /** 書籍リスト要素 */
