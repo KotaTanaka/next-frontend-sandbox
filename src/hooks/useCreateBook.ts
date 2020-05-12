@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // from app
-import { ICreateBookBody } from '@/interfaces/book';
+import { ICreateBookBody } from '@/interfaces/request/book';
 
 const createBookMutation = gql`
   mutation createBook($data: CreateBookBody!) {
