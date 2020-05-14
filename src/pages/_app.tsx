@@ -1,4 +1,6 @@
 import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import fetch from 'isomorphic-fetch';
@@ -10,6 +12,12 @@ const client = new ApolloClient({
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log('[Page]', router.pathname);
+  }, [router.pathname]);
+
   return (
     <ApolloProvider client={client}>
       <Component {...pageProps} />
