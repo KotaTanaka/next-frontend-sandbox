@@ -5,7 +5,7 @@ import fetch from 'isomorphic-fetch';
 import 'antd/dist/antd.css';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3090/graphql',
+  uri: `${process.env.NEXT_PUBLIC_SERVER_HOST}/graphql`,
   fetch,
 });
 
