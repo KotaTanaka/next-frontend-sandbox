@@ -1,17 +1,23 @@
 import { NextPage } from 'next';
+import { useRecoilValue } from 'recoil';
 import { Button } from 'antd';
 import styled from '@emotion/styled';
 
 // from app
 import Layout from '@/layout/Layout';
 import { useCreateBook, useGetBookList } from '@/hooks';
+import { bookListState } from '@/atoms/book';
 import PageHeading from '@/components/partials/PageHeading';
 import BookList from '@/components/books/BookList';
 import CreateBookModal from '@/components/books/CreateBookModal';
+import { IGetBookListResponse } from '@/interfaces/response/book';
 
 /** 書籍一覧ページ */
 const BooksListPage: NextPage = () => {
-  const { loading, error, data } = useGetBookList();
+  const { loading, error } = useGetBookList();
+
+  // prettier-ignore
+  const bookList: IGetBookListResponse = useRecoilValue<IGetBookListResponse>(bookListState);
 
   /** 書籍登録フック */
   const {
@@ -53,7 +59,7 @@ const BooksListPage: NextPage = () => {
         書籍登録
       </Button>
       <Contents>
-        <BookList books={data.books} />
+        <BookList books={bookList.books} />
       </Contents>
       <CreateBookModal
         isOpen={isCreateModalOpen}
