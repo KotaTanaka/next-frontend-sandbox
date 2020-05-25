@@ -18,7 +18,8 @@ const booksQuery = gql`
 
 /** 書籍一覧取得フック */
 export const useGetBookList = () => {
-  const { loading, error, data } = useQuery<IGetBookListResponse>(booksQuery);
+  // prettier-ignore
+  const { loading, error, data, refetch } = useQuery<IGetBookListResponse>(booksQuery);
 
   const setBookList = useSetRecoilState<IGetBookListResponse>(bookListState);
 
@@ -28,5 +29,5 @@ export const useGetBookList = () => {
     }
   }, [data]);
 
-  return { loading, error };
+  return { loading, error, refetch };
 };

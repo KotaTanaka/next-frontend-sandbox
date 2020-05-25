@@ -14,7 +14,7 @@ import { IGetBookListResponse } from '@/interfaces/response/book';
 
 /** 書籍一覧ページ */
 const BooksListPage: NextPage = () => {
-  const { loading, error } = useGetBookList();
+  const { loading, error, refetch } = useGetBookList();
 
   // prettier-ignore
   const bookList: IGetBookListResponse = useRecoilValue<IGetBookListResponse>(bookListState);
@@ -38,6 +38,7 @@ const BooksListPage: NextPage = () => {
 
   const handleOkModal = async () => {
     await sendCreateBook();
+    await refetch();
     closeModal();
   };
 
