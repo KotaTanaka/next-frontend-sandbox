@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { RecoilRoot } from 'recoil';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import fetch from 'isomorphic-fetch';
@@ -19,9 +20,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [router.pathname]);
 
   return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <RecoilRoot>
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </RecoilRoot>
   );
 };
 
