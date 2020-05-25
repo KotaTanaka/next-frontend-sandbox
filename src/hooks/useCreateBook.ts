@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 // from app
+import { createBookParamsState } from '@/atoms/book';
 import { ICreateBookBody } from '@/interfaces/request/book';
 
 const createBookMutation = gql`
@@ -20,15 +22,8 @@ export const useCreateBook = () => {
   // prettier-ignore
   const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
 
-  const [createBookParams, setCreateBookParams] = useState<ICreateBookBody>({
-    name: '',
-    outline: '',
-    author: '',
-    publisher: '',
-    category: '',
-    price: 0,
-    releasedAt: '2020-04-01',
-  });
+  // prettier-ignore
+  const [createBookParams, setCreateBookParams] = useRecoilState<ICreateBookBody>(createBookParamsState);
 
   const openModal = () => setIsCreateModalOpen(true);
 
