@@ -18,12 +18,14 @@ const HomePage: NextPage<Props> = (props: Props) => {
 
   return (
     <Layout>
-      <h1>本棚</h1>
-      <Contents>
-        <Link href={PAGE_URL.BOOKS}>
-          <LinkText>書籍一覧</LinkText>
-        </Link>
-      </Contents>
+      <Container>
+        <Title>本棚</Title>
+        <Contents>
+          <Link href={PAGE_URL.BOOKS}>
+            <LinkText>書籍一覧</LinkText>
+          </Link>
+        </Contents>
+      </Container>
     </Layout>
   );
 };
@@ -36,6 +38,12 @@ HomePage.getInitialProps = async ({ req }) => {
 };
 
 // style
+const Container = styled.div`
+  position: absolute;
+  top: 40vh;
+  width: 100%;
+`;
+const Title = styled.h1``;
 const Contents = styled.div`
   margin-top: 64px;
 `;
