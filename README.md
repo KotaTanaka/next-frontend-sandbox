@@ -1,10 +1,11 @@
-***next-books-client***
+***next-frontend-sandbox***
 
-*[Backend - nest-books-server](https://github.com/KotaTanaka/nest-books-server)*
+*[Backend - nest-graphql-sandbox](https://github.com/KotaTanaka/nest-graphql-sandbox)*
 
 ## About
 
-Books management web application with SSR.
+Next + TypeScript + CSS in JS でのフロントエンド開発の実験場  
+書籍管理アプリ
 
 ## Technology
 
@@ -15,7 +16,7 @@ Books management web application with SSR.
 * [Emotion](https://emotion.sh/docs/introduction)
 * [Ant Design](https://ant.design/docs/react/introduce)
 
-## Require
+## Requirement
 
 * Node `v12.x`
 
@@ -24,8 +25,6 @@ Books management web application with SSR.
 #### Install
 
 ```bash
-$ git clone git@github.com:KotaTanaka/next-books-client.git
-$ cd next-books-client
 $ yarn
 ```
 
@@ -36,3 +35,9 @@ $ yarn dev
 ```
 
 → http://localhost:3091
+
+#### Build
+
+```bash
+$ yarn build
+```
