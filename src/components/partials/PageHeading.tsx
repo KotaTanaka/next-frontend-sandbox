@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 interface Props {
   title: string;
@@ -10,20 +10,21 @@ const PageHeading: React.FC<Props> = (props) => {
   const { title } = props;
 
   return (
-    <Container>
-      <Heading>{title}</Heading>
-    </Container>
+    <div css={style.container}>
+      <h1 css={style.heading}>{title}</h1>
+    </div>
   );
 };
 
 export default PageHeading;
 
-// style
-const Container = styled.div`
-  text-align: center;
-  margin: 64px 0;
-`;
-const Heading = styled.h1`
-  font-size: 24px;
-  color: #0000df;
-`;
+const style = {
+  container: css`
+    text-align: center;
+    margin: 64px 0;
+  `,
+  heading: css`
+    font-size: 24px;
+    color: #0000df;
+  `,
+};

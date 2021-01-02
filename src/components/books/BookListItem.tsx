@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { PAGE_URL } from '@/constants';
 import { IBookListElement } from '@/interfaces/response/book';
 
@@ -13,23 +13,24 @@ const BookListItem: React.FC<Props> = (props) => {
   const { book } = props;
 
   return (
-    <Container>
+    <div css={style.container}>
       <Link
         key={book.id}
         href={PAGE_URL.BOOK}
         as={PAGE_URL.BOOK.replace('[id]', book.id)}
       >
-        <LinkText>{book.name}</LinkText>
+        <a css={style.link}>{book.name}</a>
       </Link>
-    </Container>
+    </div>
   );
 };
 
 export default BookListItem;
 
-// style
-const Container = styled.div``;
-const LinkText = styled.a`
-  cursor: pointer;
-  margin: 16px;
-`;
+const style = {
+  container: css``,
+  link: css`
+    cursor: pointer;
+    margin: 16px;
+  `,
+};

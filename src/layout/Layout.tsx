@@ -1,12 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import AppHeader from '@/components/partials/AppHeader';
 
 /** 共通フレーム */
 const Layout: React.FC = ({ children }) => {
   return (
-    <Container>
+    <div css={style.container}>
       <Head>
         <title>Books Management</title>
         <meta charSet="utf-8" />
@@ -14,13 +14,14 @@ const Layout: React.FC = ({ children }) => {
       </Head>
       <AppHeader />
       {children}
-    </Container>
+    </div>
   );
 };
 
 export default Layout;
 
-// style
-const Container = styled.div`
-  text-align: center;
-`;
+const style = {
+  container: css`
+    text-align: center;
+  `,
+};

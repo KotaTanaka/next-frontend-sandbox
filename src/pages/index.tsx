@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useEffect } from 'react';
 import Link from 'next/link';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { PAGE_URL } from '@/constants';
 
 interface Props {
@@ -15,14 +15,14 @@ const HomePage: NextPage<Props> = (props) => {
   useEffect(() => console.log('User Agent:', userAgent), []);
 
   return (
-    <Container>
-      <Title>本棚</Title>
-      <Contents>
+    <div css={style.container}>
+      <h1 css={style.title}>本棚</h1>
+      <div css={style.contents}>
         <Link href={PAGE_URL.BOOKS}>
-          <LinkText>書籍一覧</LinkText>
+          <a css={style.link}>書籍一覧</a>
         </Link>
-      </Contents>
-    </Container>
+      </div>
+    </div>
   );
 };
 
@@ -33,17 +33,18 @@ HomePage.getInitialProps = async ({ req }) => {
   return { userAgent };
 };
 
-// style
-const Container = styled.div`
-  position: absolute;
-  top: 40vh;
-  width: 100%;
-`;
-const Title = styled.h1``;
-const Contents = styled.div`
-  margin-top: 64px;
-`;
-const LinkText = styled.a`
-  cursor: pointer;
-  margin: 16px;
-`;
+const style = {
+  container: css`
+    position: absolute;
+    top: 40vh;
+    width: 100%;
+  `,
+  title: css``,
+  contents: css`
+    margin-top: 64px;
+  `,
+  link: css`
+    cursor: pointer;
+    margin: 16px;
+  `,
+};

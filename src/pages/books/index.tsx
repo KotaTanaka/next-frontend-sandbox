@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
 import { Button } from 'antd';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useCreateBook, useGetBookList } from '@/hooks';
 import { bookListState } from '@/atoms/book';
 import PageHeading from '@/components/partials/PageHeading';
@@ -51,14 +51,14 @@ const BooksListPage: NextPage = () => {
   if (error) return <p>Error! {error.message}</p>;
 
   return (
-    <>
+    <div css={style.container}>
       <PageHeading title="書籍一覧" />
       <Button type="primary" onClick={openModal}>
         書籍登録
       </Button>
-      <Contents>
+      <div css={style.contents}>
         <BookList books={bookList.books} />
-      </Contents>
+      </div>
       <CreateBookModal
         isOpen={isCreateModalOpen}
         onOk={handleOkModal}
@@ -72,13 +72,15 @@ const BooksListPage: NextPage = () => {
         onChangePrice={changePrice}
         onChangeReleasedAt={changeReleasedAt}
       />
-    </>
+    </div>
   );
 };
 
 export default BooksListPage;
 
-// style
-const Contents = styled.div`
-  margin-top: 64px;
-`;
+const style = {
+  container: css``,
+  contents: css`
+    margin-top: 64px;
+  `,
+};

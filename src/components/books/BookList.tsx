@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import BookListItem from '@/components/books/BookListItem';
 import { IBookListElement } from '@/interfaces/response/book';
 
@@ -12,17 +12,18 @@ const BookList: React.FC<Props> = (props) => {
   const { books } = props;
 
   return (
-    <Container>
+    <div css={style.container}>
       {books.map((book) => (
         <BookListItem key={book.id} book={book} />
       ))}
-    </Container>
+    </div>
   );
 };
 
 export default BookList;
 
-// style
-const Container = styled.div`
-  margin-top: 64px;
-`;
+const style = {
+  container: css`
+    margin-top: 64px;
+  `,
+};
