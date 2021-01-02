@@ -2,8 +2,6 @@ import { NextPage } from 'next';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
-
-// from app
 import { PAGE_URL } from '@/constants';
 import Layout from '@/layout/Layout';
 

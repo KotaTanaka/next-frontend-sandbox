@@ -1,7 +1,5 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-
-// from app
 import Layout from '@/layout/Layout';
 import PageHeading from '@/components/partials/PageHeading';
 

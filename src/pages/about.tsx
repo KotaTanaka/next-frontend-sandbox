@@ -1,6 +1,4 @@
 import { NextPage } from 'next';
-
-// from app
 import Layout from '@/layout/Layout';
 import PageHeading from '@/components/partials/PageHeading';
 

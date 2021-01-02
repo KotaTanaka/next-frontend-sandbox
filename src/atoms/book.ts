@@ -1,6 +1,4 @@
 import { atom } from 'recoil';
-
-// from app
 import { ICreateBookBody } from '@/interfaces/request/book';
 import { IGetBookListResponse } from '@/interfaces/response/book';
 

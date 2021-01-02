@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-
-// from app
 import { createBookParamsState } from '@/atoms/book';
 import { ICreateBookBody } from '@/interfaces/request/book';
 

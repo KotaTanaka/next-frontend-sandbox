@@ -1,8 +1,6 @@
 import { NextComponentType } from 'next';
 import { DatePicker, Form, Input, InputNumber, Modal } from 'antd';
 import moment from 'moment';
-
-// from app
 import { ICreateBookBody } from '@/interfaces/request/book';
 
 interface Props {

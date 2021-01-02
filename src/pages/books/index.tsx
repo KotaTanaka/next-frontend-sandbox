@@ -2,8 +2,6 @@ import { NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
 import { Button } from 'antd';
 import styled from '@emotion/styled';
-
-// from app
 import Layout from '@/layout/Layout';
 import { useCreateBook, useGetBookList } from '@/hooks';
 import { bookListState } from '@/atoms/book';

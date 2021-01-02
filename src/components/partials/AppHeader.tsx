@@ -8,8 +8,6 @@ import {
   MenuOutlined,
 } from '@ant-design/icons';
 import styled from '@emotion/styled';
-
-// from app
 import { PAGE_URL } from '@/constants';
 
 /** ヘッダー */

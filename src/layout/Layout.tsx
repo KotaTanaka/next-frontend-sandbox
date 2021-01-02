@@ -1,8 +1,6 @@
 import { NextComponentType } from 'next';
 import Head from 'next/head';
 import styled from '@emotion/styled';
-
-// from app
 import AppHeader from '@/components/partials/AppHeader';
 
 const Layout: NextComponentType = (props) => {

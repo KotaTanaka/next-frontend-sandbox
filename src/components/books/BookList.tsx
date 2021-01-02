@@ -1,7 +1,5 @@
 import { NextComponentType } from 'next';
 import styled from '@emotion/styled';
-
-// from app
 import BookListItem from '@/components/books/BookListItem';
 import { IBookListElement } from '@/interfaces/response/book';
 
