@@ -1,11 +1,9 @@
-import { NextComponentType } from 'next';
+import React from 'react';
 import Head from 'next/head';
 import styled from '@emotion/styled';
 import AppHeader from '@/components/partials/AppHeader';
 
-const Layout: NextComponentType = (props) => {
-  const { children } = props;
-
+const Layout: React.FC = ({ children }) => {
   return (
     <Container>
       <Head>

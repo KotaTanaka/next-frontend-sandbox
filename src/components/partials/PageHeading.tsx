@@ -1,4 +1,4 @@
-import { NextComponentType } from 'next';
+import React from 'react';
 import styled from '@emotion/styled';
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
 }
 
 /** ページ見出し */
-const PageHeading: NextComponentType<{}, {}, Props> = (props: Props) => {
+const PageHeading: React.FC<Props> = (props) => {
   const { title } = props;
 
   return (

@@ -1,4 +1,4 @@
-import { NextComponentType } from 'next';
+import React from 'react';
 import styled from '@emotion/styled';
 import BookListItem from '@/components/books/BookListItem';
 import { IBookListElement } from '@/interfaces/response/book';
@@ -8,7 +8,7 @@ interface Props {
 }
 
 /** 書籍リスト */
-const BookList: NextComponentType<{}, {}, Props> = (props: Props) => {
+const BookList: React.FC<Props> = (props) => {
   const { books } = props;
 
   return (

@@ -1,4 +1,4 @@
-import { NextComponentType } from 'next';
+import React from 'react';
 import { CSSProperties, useState } from 'react';
 import Link from 'next/link';
 import { Menu, Button } from 'antd';
@@ -11,7 +11,7 @@ import styled from '@emotion/styled';
 import { PAGE_URL } from '@/constants';
 
 /** ヘッダー */
-const AppHeader: NextComponentType = () => {
+const AppHeader: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   /** メニューの開閉 */

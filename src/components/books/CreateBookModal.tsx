@@ -1,4 +1,4 @@
-import { NextComponentType } from 'next';
+import React from 'react';
 import { DatePicker, Form, Input, InputNumber, Modal } from 'antd';
 import moment from 'moment';
 import { ICreateBookBody } from '@/interfaces/request/book';
@@ -18,7 +18,7 @@ interface Props {
 }
 
 /** 書籍登録モーダル */
-const CreateBookModal: NextComponentType<{}, {}, Props> = (props: Props) => {
+const CreateBookModal: React.FC<Props> = (props) => {
   const {
     isOpen,
     onOk,

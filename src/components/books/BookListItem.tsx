@@ -1,4 +1,4 @@
-import { NextComponentType } from 'next';
+import React from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { PAGE_URL } from '@/constants';
@@ -9,7 +9,7 @@ interface Props {
 }
 
 /** 書籍リスト要素 */
-const BookListItem: NextComponentType<{}, {}, Props> = (props: Props) => {
+const BookListItem: React.FC<Props> = (props) => {
   const { book } = props;
 
   return (
