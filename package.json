@@ -1,25 +1,15 @@
 {
-  "name": "next-books-spa",
-  "version": "1.0.0",
-  "description": "書籍管理SPA [Next.js]",
-  "main": "index.js",
+  "name": "next-frontend-sandbox",
+  "version": "0.0.1",
+  "description": "Books Management App Frontend",
+  "author": "KotaTanaka",
+  "private": true,
   "scripts": {
     "dev": "next -p 3091",
     "build": "next build",
     "start": "next start",
     "lint:fix": "eslint --ext .ts,.tsx --fix ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KotaTanaka/next-books-spa.git"
-  },
-  "keywords": [],
-  "author": "Kota Tanaka",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KotaTanaka/next-books-spa/issues"
-  },
-  "homepage": "https://github.com/KotaTanaka/next-books-spa#readme",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
     "@emotion/core": "^10.0.28",
