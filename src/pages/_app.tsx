@@ -1,6 +1,6 @@
+import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { RecoilRoot } from 'recoil';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -12,7 +12,7 @@ const client = new ApolloClient({
   fetch,
 });
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
 
   useEffect(() => {

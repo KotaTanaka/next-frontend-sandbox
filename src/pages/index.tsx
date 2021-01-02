@@ -9,7 +9,7 @@ interface Props {
   userAgent: string;
 }
 
-const HomePage: NextPage<Props> = (props: Props) => {
+const HomePage: NextPage<Props> = (props) => {
   const { userAgent } = props;
 
   useEffect(() => console.log('User Agent:', userAgent), []);
