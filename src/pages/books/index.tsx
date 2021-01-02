@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
 import { Button } from 'antd';
 import styled from '@emotion/styled';
-import Layout from '@/layout/Layout';
 import { useCreateBook, useGetBookList } from '@/hooks';
 import { bookListState } from '@/atoms/book';
 import PageHeading from '@/components/partials/PageHeading';
@@ -52,7 +51,7 @@ const BooksListPage: NextPage = () => {
   if (error) return <p>Error! {error.message}</p>;
 
   return (
-    <Layout>
+    <>
       <PageHeading title="書籍一覧" />
       <Button type="primary" onClick={openModal}>
         書籍登録
@@ -73,7 +72,7 @@ const BooksListPage: NextPage = () => {
         onChangePrice={changePrice}
         onChangeReleasedAt={changeReleasedAt}
       />
-    </Layout>
+    </>
   );
 };
 

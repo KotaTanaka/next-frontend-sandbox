@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { PAGE_URL } from '@/constants';
-import Layout from '@/layout/Layout';
 
 interface Props {
   userAgent: string;
@@ -16,16 +15,14 @@ const HomePage: NextPage<Props> = (props) => {
   useEffect(() => console.log('User Agent:', userAgent), []);
 
   return (
-    <Layout>
-      <Container>
-        <Title>本棚</Title>
-        <Contents>
-          <Link href={PAGE_URL.BOOKS}>
-            <LinkText>書籍一覧</LinkText>
-          </Link>
-        </Contents>
-      </Container>
-    </Layout>
+    <Container>
+      <Title>本棚</Title>
+      <Contents>
+        <Link href={PAGE_URL.BOOKS}>
+          <LinkText>書籍一覧</LinkText>
+        </Link>
+      </Contents>
+    </Container>
   );
 };
 

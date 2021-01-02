@@ -3,6 +3,7 @@ import Head from 'next/head';
 import styled from '@emotion/styled';
 import AppHeader from '@/components/partials/AppHeader';
 
+/** 共通フレーム */
 const Layout: React.FC = ({ children }) => {
   return (
     <Container>
