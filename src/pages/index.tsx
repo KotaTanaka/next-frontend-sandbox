@@ -9,6 +9,7 @@ interface Props {
   userAgent: string;
 }
 
+/** ホーム */
 const HomePage: NextPage<Props> = (props) => {
   const { userAgent } = props;
 
