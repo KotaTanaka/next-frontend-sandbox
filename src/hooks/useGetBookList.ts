@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
+import { gql, useQuery } from '@apollo/client';
 import { bookListState } from '@/atoms/book';
 import { IGetBookListResponse } from '@/interfaces/response/book';
 

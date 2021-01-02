@@ -2,14 +2,12 @@ import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { RecoilRoot } from 'recoil';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
-import fetch from 'isomorphic-fetch';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import 'antd/dist/antd.css';
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_SERVER_HOST}/graphql`,
-  fetch,
+  cache: new InMemoryCache(),
 });
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
