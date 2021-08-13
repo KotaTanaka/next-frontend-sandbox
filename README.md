@@ -18,7 +18,7 @@ Next + TypeScript + CSS in JS でのフロントエンド開発の素振り
 
 ## Requirement
 
-* Node `v12.x`
+* Node `v15.x`
 
 ## Getting Started
 

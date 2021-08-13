@@ -4,6 +4,9 @@
   "description": "Books Management App Frontend",
   "author": "KotaTanaka",
   "private": true,
+  "engines": {
+    "node": "15.x"
+  },
   "scripts": {
     "dev": "next -p 3091",
     "build": "next build",
