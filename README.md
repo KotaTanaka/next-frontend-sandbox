@@ -4,7 +4,7 @@
 
 ## About
 
-Next + TypeScript + CSS in JS でのフロントエンド開発の実験場  
+Next + TypeScript + CSS in JS でのフロントエンド開発の素振り  
 書籍管理アプリ
 
 ## Technology
