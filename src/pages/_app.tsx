@@ -2,7 +2,6 @@ import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
-import 'antd/dist/antd.css';
 import 'tailwindcss/tailwind.css';
 import Layout from '@/layout/Layout';
 

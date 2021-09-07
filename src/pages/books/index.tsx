@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
-import { Button } from 'antd';
+import { Button } from '@chakra-ui/react';
 import { useCreateBook, useGetBookList } from '@/hooks';
 import { bookListState } from '@/atoms/book';
 import PageHeading from '@/components/partials/PageHeading';
@@ -52,9 +52,7 @@ const BooksListPage: NextPage = () => {
   return (
     <div>
       <PageHeading title="書籍一覧" />
-      <Button type="primary" onClick={openModal}>
-        書籍登録
-      </Button>
+      <Button onClick={openModal}>書籍登録</Button>
       <div className="mt-16">
         <BookList books={bookList.books} />
       </div>

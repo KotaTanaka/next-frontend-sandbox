@@ -1,55 +1,41 @@
+import { useRouter } from 'next/router';
 import React from 'react';
-import { CSSProperties, useState } from 'react';
-import Link from 'next/link';
-import { Menu, Button } from 'antd';
+import { HamburgerIcon, InfoIcon, TimeIcon } from '@chakra-ui/icons';
 import {
-  HomeOutlined,
-  InfoCircleOutlined,
-  MenuOutlined,
-} from '@ant-design/icons';
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuButton,
+  IconButton,
+} from '@chakra-ui/react';
 import { PAGE_URL } from '@/constants';
 
 /** ヘッダー */
 const AppHeader: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-  /** メニューの開閉 */
-  const handleClickMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const router = useRouter();
 
   return (
-    <div className="text-center">
-      <div className="absolute top-2 left-2">
-        <Button type="primary" onClick={handleClickMenu}>
-          <MenuOutlined />
-        </Button>
-      </div>
-      {isMenuOpen && (
-        <Menu theme="dark" style={menuStyle}>
-          <Menu.Item key={PAGE_URL.HOME}>
-            <HomeOutlined />
-            <Link href={PAGE_URL.HOME}>
-              <a className="cursor-pointer m-4">Home</a>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key={PAGE_URL.ABOUT}>
-            <InfoCircleOutlined />
-            <Link href={PAGE_URL.ABOUT}>
-              <a className="cursor-pointer m-4">About Page</a>
-            </Link>
-          </Menu.Item>
-        </Menu>
-      )}
+    <div className="flex fixed top-0 left-0 items-center w-full">
+      <Menu>
+        <MenuButton as={IconButton} icon={<HamburgerIcon />} margin="2" />
+        <MenuList>
+          <MenuItem
+            icon={<TimeIcon />}
+            onClick={() => router.push(PAGE_URL.HOME)}
+          >
+            Home
+          </MenuItem>
+          <MenuItem
+            icon={<InfoIcon />}
+            onClick={() => router.push(PAGE_URL.ABOUT)}
+          >
+            About Page
+          </MenuItem>
+        </MenuList>
+      </Menu>
+      <div>本棚管理</div>
     </div>
   );
 };
 
 export default AppHeader;
-
-const menuStyle: CSSProperties = {
-  position: 'absolute',
-  top: 44,
-  left: 8,
-  textAlign: 'left',
-};
