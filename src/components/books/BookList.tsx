@@ -1,5 +1,4 @@
 import React from 'react';
-import { css } from '@emotion/react';
 import BookListItem from '@/components/books/BookListItem';
 import { IBookListElement } from '@/interfaces/response/book';
 
@@ -12,7 +11,7 @@ const BookList: React.FC<Props> = (props) => {
   const { books } = props;
 
   return (
-    <div css={style.container}>
+    <div className="mt-16">
       {books.map((book) => (
         <BookListItem key={book.id} book={book} />
       ))}
@@ -22,8 +21,3 @@ const BookList: React.FC<Props> = (props) => {
 
 export default BookList;
 
-const style = {
-  container: css`
-    margin-top: 64px;
-  `,
-};

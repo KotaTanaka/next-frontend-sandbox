@@ -1,12 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
-import { css } from '@emotion/react';
 import AppHeader from '@/components/partials/AppHeader';
 
 /** 共通フレーム */
 const Layout: React.FC = ({ children }) => {
   return (
-    <div css={style.container}>
+    <div className="text-center">
       <Head>
         <title>Books Management</title>
         <meta charSet="utf-8" />
@@ -19,9 +18,3 @@ const Layout: React.FC = ({ children }) => {
 };
 
 export default Layout;
-
-const style = {
-  container: css`
-    text-align: center;
-  `,
-};

@@ -7,7 +7,6 @@ import {
   InfoCircleOutlined,
   MenuOutlined,
 } from '@ant-design/icons';
-import { css } from '@emotion/react';
 import { PAGE_URL } from '@/constants';
 
 /** ヘッダー */
@@ -20,8 +19,8 @@ const AppHeader: React.FC = () => {
   };
 
   return (
-    <div css={style.container}>
-      <div css={style.menuButtonWrapper}>
+    <div className="text-center">
+      <div className="absolute top-2 left-2">
         <Button type="primary" onClick={handleClickMenu}>
           <MenuOutlined />
         </Button>
@@ -31,13 +30,13 @@ const AppHeader: React.FC = () => {
           <Menu.Item key={PAGE_URL.HOME}>
             <HomeOutlined />
             <Link href={PAGE_URL.HOME}>
-              <a css={style.link}>Home</a>
+              <a className="cursor-pointer m-4">Home</a>
             </Link>
           </Menu.Item>
           <Menu.Item key={PAGE_URL.ABOUT}>
             <InfoCircleOutlined />
             <Link href={PAGE_URL.ABOUT}>
-              <a css={style.link}>About Page</a>
+              <a className="cursor-pointer m-4">About Page</a>
             </Link>
           </Menu.Item>
         </Menu>
@@ -48,20 +47,6 @@ const AppHeader: React.FC = () => {
 
 export default AppHeader;
 
-const style = {
-  container: css`
-    text-align: center;
-  `,
-  menuButtonWrapper: css`
-    position: absolute;
-    top: 8px;
-    left: 8px;
-  `,
-  link: css`
-    cursor: pointer;
-    margin: 16px;
-  `,
-};
 const menuStyle: CSSProperties = {
   position: 'absolute',
   top: 44,
