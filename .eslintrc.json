@@ -6,7 +6,7 @@
     "plugin:prettier/recommended",
     "plugin:tailwindcss/recommended"
   ],
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": ["@typescript-eslint", "react", "simple-import-sort"],
   "parser": "@typescript-eslint/parser",
   "env": { "browser": true, "node": true, "es6": true },
   "parserOptions": {
@@ -19,6 +19,7 @@
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "simple-import-sort/imports": "error"
   }
 }
