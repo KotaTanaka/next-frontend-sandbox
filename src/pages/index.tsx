@@ -6,7 +6,7 @@ import { PAGE_URL } from '@/constants';
 const HomePage: NextPage = () => {
   return (
     <div>
-      <div className="font-bold mt-32 text-2xl">本棚</div>
+      <div className="mt-32 text-2xl font-bold">本棚</div>
       <div className="mt-16">
         <Link href={PAGE_URL.BOOKS}>
           <a>書籍一覧</a>

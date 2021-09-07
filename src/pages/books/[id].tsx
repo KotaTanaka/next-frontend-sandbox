@@ -6,7 +6,7 @@ import PageHeading from '@/components/partials/PageHeading';
 /** 書籍詳細ページ */
 const BooksDetailPage: NextPage = () => {
   const router = useRouter();
-  
+
   /** 書籍ID */
   const bookId = useMemo<string>(() => {
     const { id } = router.query;

@@ -18,7 +18,7 @@ const BookListItem: React.FC<Props> = (props) => {
         href={PAGE_URL.BOOK}
         as={PAGE_URL.BOOK.replace('[id]', book.id)}
       >
-        <a className="cursor-pointer m-4">{book.name}</a>
+        <a className="m-4 cursor-pointer">{book.name}</a>
       </Link>
     </div>
   );

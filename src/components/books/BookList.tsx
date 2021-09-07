@@ -20,4 +20,3 @@ const BookList: React.FC<Props> = (props) => {
 };
 
 export default BookList;
-
