@@ -1,17 +1,18 @@
-import { NextPage } from 'next';
-import { useRecoilValue } from 'recoil';
 import { Button } from '@chakra-ui/react';
-import useCreateBook from '@/hooks/useCreateBook';
-import useGetBookList from '@/hooks/useGetBookList';
+import { NextPage } from 'next';
+import { useCallback } from 'react';
+import { useRecoilValue } from 'recoil';
+
 import { bookListState } from '@/atoms/book';
-import PageHeading from '@/components/partials/PageHeading';
 import BookList from '@/components/books/BookList';
 import CreateBookModal from '@/components/books/CreateBookModal';
+import PageHeading from '@/components/partials/PageHeading';
+import useCreateBook from '@/hooks/useCreateBook';
+import useGetBookList from '@/hooks/useGetBookList';
 import { IGetBookListResponse } from '@/interfaces/response/book';
-import { useCallback } from 'react';
 
 /** 書籍一覧ページ */
-const BooksListPage: NextPage = () => {
+const BookListPage: NextPage = () => {
   const { loading, error, refetch } = useGetBookList();
 
   // prettier-ignore
@@ -75,4 +76,4 @@ const BooksListPage: NextPage = () => {
   );
 };
 
-export default BooksListPage;
+export default BookListPage;

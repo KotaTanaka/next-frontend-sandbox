@@ -1,10 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
+
 import { PAGE_URL } from '@/constants';
-import { IBookListElement } from '@/interfaces/response/book';
+import { IBookListItem } from '@/interfaces/response/book';
 
 interface Props {
-  book: IBookListElement;
+  book: IBookListItem;
 }
 
 /** 書籍リスト要素 */

@@ -1,13 +1,13 @@
-import { useRouter } from 'next/router';
-import React from 'react';
 import { HamburgerIcon, InfoIcon, TimeIcon } from '@chakra-ui/icons';
 import {
+  IconButton,
   Menu,
+  MenuButton,
   MenuItem,
   MenuList,
-  MenuButton,
-  IconButton,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+
 import { PAGE_URL } from '@/constants';
 
 /** ヘッダー */

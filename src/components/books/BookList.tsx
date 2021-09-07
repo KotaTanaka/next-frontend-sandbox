@@ -1,4 +1,3 @@
-import React from 'react';
 import BookListItem from '@/components/books/BookListItem';
 import { IBookListItem } from '@/interfaces/response/book';
 

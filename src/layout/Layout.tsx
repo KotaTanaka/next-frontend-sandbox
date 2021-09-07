@@ -1,5 +1,5 @@
-import React from 'react';
 import Head from 'next/head';
+
 import AppHeader from '@/components/partials/AppHeader';
 
 /** 共通フレーム */

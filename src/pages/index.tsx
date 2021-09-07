@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
+
 import PageHeading from '@/components/partials/PageHeading';
 import { PAGE_URL } from '@/constants';
 

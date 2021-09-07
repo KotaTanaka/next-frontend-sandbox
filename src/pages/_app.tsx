@@ -1,8 +1,10 @@
-import { AppProps } from 'next/app';
-import { RecoilRoot } from 'recoil';
+import 'tailwindcss/tailwind.css';
+
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
-import 'tailwindcss/tailwind.css';
+import { AppProps } from 'next/app';
+import { RecoilRoot } from 'recoil';
+
 import Layout from '@/layout/Layout';
 
 const client = new ApolloClient({

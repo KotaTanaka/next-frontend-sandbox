@@ -1,10 +1,11 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
+
 import PageHeading from '@/components/partials/PageHeading';
 
 /** 書籍詳細ページ */
-const BooksDetailPage: NextPage = () => {
+const BookDetailPage: NextPage = () => {
   const router = useRouter();
 
   /** 書籍ID */
@@ -21,4 +22,4 @@ const BooksDetailPage: NextPage = () => {
   );
 };
 
-export default BooksDetailPage;
+export default BookDetailPage;

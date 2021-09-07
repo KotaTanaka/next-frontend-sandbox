@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+
 import PageHeading from '@/components/partials/PageHeading';
 
 /** アバウトページ */
