@@ -11,10 +11,10 @@ Next + TypeScript + CSS in JS でのフロントエンド開発の素振り
 
 * [Next.js](https://nextjs.org)
 * [TypeScript](https://github.com/microsoft/TypeScript)
-* GraphQL - [Apollo Client](https://www.apollographql.com/docs/react)
-* [Recoil](https://recoiljs.org)
-* [Emotion](https://emotion.sh/docs/introduction)
-* [Ant Design](https://ant.design/docs/react/introduce)
+* GraphQL Client ... [Apollo Client](https://www.apollographql.com/docs/react)
+* State Management ... [Recoil](https://recoiljs.org)
+* CSS ... [Tailwind CSS](https://tailwindcss.com)
+* UI Components ... [Ant Design](https://chakra-ui.com)
 
 ## Requirement
 
