@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ChakraProvider } from '@chakra-ui/react';
 import 'antd/dist/antd.css';
 import 'tailwindcss/tailwind.css';
 import Layout from '@/layout/Layout';
@@ -14,9 +15,11 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <RecoilRoot>
       <ApolloProvider client={client}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <ChakraProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ChakraProvider>
       </ApolloProvider>
     </RecoilRoot>
   );
