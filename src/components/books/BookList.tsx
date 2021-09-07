@@ -1,9 +1,9 @@
 import React from 'react';
 import BookListItem from '@/components/books/BookListItem';
-import { IBookListElement } from '@/interfaces/response/book';
+import { IBookListItem } from '@/interfaces/response/book';
 
 interface Props {
-  books: IBookListElement[];
+  books: IBookListItem[];
 }
 
 /** 書籍リスト */

@@ -1,10 +1,10 @@
 /** 書籍一覧取得レスポンス */
 export interface IGetBookListResponse {
-  books: IBookListElement[];
+  books: IBookListItem[];
 }
 
 /** 書籍リスト要素 */
-export interface IBookListElement {
+export interface IBookListItem {
   id: string;
   name: string;
   outline: string;

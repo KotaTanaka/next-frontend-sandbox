@@ -1,13 +1,14 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
+import PageHeading from '@/components/partials/PageHeading';
 import { PAGE_URL } from '@/constants';
 
 /** ホーム */
 const HomePage: NextPage = () => {
   return (
     <div>
-      <div className="mt-32 text-2xl font-bold">本棚</div>
-      <div className="mt-16">
+      <PageHeading title="Home" />
+      <div>
         <Link href={PAGE_URL.BOOKS}>
           <a>書籍一覧</a>
         </Link>

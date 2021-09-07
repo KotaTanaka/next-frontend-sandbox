@@ -1,5 +1,5 @@
 /** メディアクエリフック */
-export const useMedia = () => {
+const useMedia = () => {
   /** ブレークポイント */
   const BREAKPOINT = 600;
 
@@ -14,3 +14,5 @@ export const useMedia = () => {
     isPC,
   };
 };
+
+export default useMedia;
