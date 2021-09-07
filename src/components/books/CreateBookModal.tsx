@@ -1,11 +1,22 @@
-import React from 'react';
-import { DatePicker, Form, Input, InputNumber, Modal } from 'antd';
-import moment from 'moment';
+import React, { useCallback } from 'react';
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  ModalFooter,
+} from '@chakra-ui/react';
 import { ICreateBookBody } from '@/interfaces/request/book';
 
 interface Props {
   isOpen: boolean;
-  onOk: () => Promise<void>;
+  onOk: () => void;
   onCancel: () => void;
   params: ICreateBookBody;
   onChangeName: (value: string) => void;
@@ -33,69 +44,117 @@ const CreateBookModal: React.FC<Props> = (props) => {
     onChangeReleasedAt,
   } = props;
 
-  const handleChangeName = (e) => onChangeName(e.target.value);
-  const handleChangeOutline = (e) => onChangeOutline(e.target.value);
-  const handleChangeAuthor = (e) => onChangeAuthor(e.target.value);
-  const handleChangePublisher = (e) => onChangePublisher(e.target.value);
-  const handleChangeCategory = (e) => onChangeCategory(e.target.value);
-  const handleChangePrice = (value) => onChangePrice(value);
-  const handleChangeReleasedAt = (_, dateString) => {
-    onChangeReleasedAt(dateString);
-  };
+  const handleChangeName = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => onChangeName(e.target.value),
+    [onChangeName],
+  );
+
+  const handleChangeOutline = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => onChangeOutline(e.target.value),
+    [onChangeOutline],
+  );
+
+  const handleChangeAuthor = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => onChangeAuthor(e.target.value),
+    [onChangeAuthor],
+  );
+
+  const handleChangePublisher = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      onChangePublisher(e.target.value),
+    [onChangePublisher],
+  );
+
+  const handleChangeCategory = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      onChangeCategory(e.target.value),
+    [onChangeCategory],
+  );
+
+  const handleChangePrice = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const targetValue = Number(e.target.value);
+      if (!Number.isNaN(targetValue)) {
+        onChangePrice(targetValue);
+      }
+    },
+    [onChangePrice],
+  );
+
+  const handleChangeReleasedAt = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      onChangeReleasedAt(e.target.value),
+    [onChangeReleasedAt],
+  );
 
   return (
-    <Modal title="書籍登録" visible={isOpen} onOk={onOk} onCancel={onCancel}>
-      <Form>
-        <Form.Item label="タイトル" rules={[{ required: true }]}>
-          <Input
-            placeholder="タイトル"
-            value={params.name}
-            onChange={handleChangeName}
-          />
-        </Form.Item>
-        <Form.Item label="あらすじ" rules={[{ required: true }]}>
-          <Input.TextArea
-            placeholder="あらすじ"
-            value={params.outline}
-            onChange={handleChangeOutline}
-          />
-        </Form.Item>
-        <Form.Item label="著者" rules={[{ required: true }]}>
-          <Input
-            placeholder="著者"
-            value={params.author}
-            onChange={handleChangeAuthor}
-          />
-        </Form.Item>
-        <Form.Item label="出版社" rules={[{ required: true }]}>
-          <Input
-            placeholder="出版社"
-            value={params.publisher}
-            onChange={handleChangePublisher}
-          />
-        </Form.Item>
-        <Form.Item label="カテゴリー" rules={[{ required: true }]}>
-          <Input
-            placeholder="カテゴリー"
-            value={params.category}
-            onChange={handleChangeCategory}
-          />
-        </Form.Item>
-        <Form.Item label="価格" rules={[{ required: true }]}>
-          <InputNumber
-            placeholder="価格"
-            min={0}
-            value={params.price}
-            onChange={handleChangePrice}
-          />
-        </Form.Item>
-        <Form.Item label="発売日" rules={[{ required: true }]}>
-          <DatePicker
-            defaultValue={moment('2020-04-01', 'YYYY-MM-DD')}
-            onChange={handleChangeReleasedAt}
-          />
-        </Form.Item>
-      </Form>
+    <Modal isOpen={isOpen} onClose={onCancel}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>書籍登録</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <FormControl isRequired marginTop="8px">
+            <FormLabel>タイトル</FormLabel>
+            <Input
+              placeholder="タイトル"
+              value={params.name}
+              onChange={handleChangeName}
+            />
+          </FormControl>
+          <FormControl isRequired marginTop="8px">
+            <FormLabel>あらすじ</FormLabel>
+            <Input
+              placeholder="あらすじ"
+              value={params.outline}
+              onChange={handleChangeOutline}
+            />
+          </FormControl>
+          <FormControl isRequired marginTop="8px">
+            <FormLabel>著者</FormLabel>
+            <Input
+              placeholder="著者"
+              value={params.author}
+              onChange={handleChangeAuthor}
+            />
+          </FormControl>
+          <FormControl isRequired marginTop="8px">
+            <FormLabel>出版社</FormLabel>
+            <Input
+              placeholder="出版社"
+              value={params.publisher}
+              onChange={handleChangePublisher}
+            />
+          </FormControl>
+          <FormControl isRequired marginTop="8px">
+            <FormLabel>カテゴリ</FormLabel>
+            <Input
+              placeholder="カテゴリ"
+              value={params.category}
+              onChange={handleChangeCategory}
+            />
+          </FormControl>
+          <FormControl isRequired marginTop="8px">
+            <FormLabel>価格</FormLabel>
+            <Input
+              placeholder="価格"
+              value={params.price}
+              onChange={handleChangePrice}
+            />
+          </FormControl>
+          <FormControl isRequired marginTop="8px">
+            <FormLabel>発売日</FormLabel>
+            <Input
+              placeholder="発売日"
+              value={params.releasedAt}
+              onChange={handleChangeReleasedAt}
+            />
+          </FormControl>
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={onOk}>OK</Button>
+        </ModalFooter>
+      </ModalContent>
     </Modal>
   );
 };

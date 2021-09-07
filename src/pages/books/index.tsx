@@ -1,13 +1,14 @@
 import { NextPage } from 'next';
 import { useRecoilValue } from 'recoil';
-import { Button } from 'antd';
-import { css } from '@emotion/react';
-import { useCreateBook, useGetBookList } from '@/hooks';
+import { Button } from '@chakra-ui/react';
+import useCreateBook from '@/hooks/useCreateBook';
+import useGetBookList from '@/hooks/useGetBookList';
 import { bookListState } from '@/atoms/book';
 import PageHeading from '@/components/partials/PageHeading';
 import BookList from '@/components/books/BookList';
 import CreateBookModal from '@/components/books/CreateBookModal';
 import { IGetBookListResponse } from '@/interfaces/response/book';
+import { useCallback } from 'react';
 
 /** 書籍一覧ページ */
 const BooksListPage: NextPage = () => {
@@ -16,7 +17,7 @@ const BooksListPage: NextPage = () => {
   // prettier-ignore
   const bookList: IGetBookListResponse = useRecoilValue<IGetBookListResponse>(bookListState);
 
-  /** 書籍登録フック */
+  /** 書籍登録ロジック */
   const {
     isCreateModalOpen,
     openModal,
@@ -33,16 +34,16 @@ const BooksListPage: NextPage = () => {
     sendCreateBook,
   } = useCreateBook();
 
-  const handleOkModal = async () => {
+  const onClickModalOk = useCallback(async () => {
     await sendCreateBook();
     await refetch();
     closeModal();
-  };
+  }, [sendCreateBook, refetch, closeModal]);
 
-  const handleCancelModal = () => {
+  const onClickModalCancel = useCallback(() => {
     resetCreateBookParams();
     closeModal();
-  };
+  }, [resetCreateBookParams, closeModal]);
 
   // TODO ローディング
   if (loading) return <p>Loading...</p>;
@@ -51,18 +52,16 @@ const BooksListPage: NextPage = () => {
   if (error) return <p>Error! {error.message}</p>;
 
   return (
-    <div css={style.container}>
+    <div>
       <PageHeading title="書籍一覧" />
-      <Button type="primary" onClick={openModal}>
-        書籍登録
-      </Button>
-      <div css={style.contents}>
+      <Button onClick={openModal}>書籍登録</Button>
+      <div className="mt-16">
         <BookList books={bookList.books} />
       </div>
       <CreateBookModal
         isOpen={isCreateModalOpen}
-        onOk={handleOkModal}
-        onCancel={handleCancelModal}
+        onOk={onClickModalOk}
+        onCancel={onClickModalCancel}
         params={createBookParams}
         onChangeName={changeName}
         onChangeOutline={changeOutline}
@@ -77,10 +76,3 @@ const BooksListPage: NextPage = () => {
 };
 
 export default BooksListPage;
-
-const style = {
-  container: css``,
-  contents: css`
-    margin-top: 64px;
-  `,
-};

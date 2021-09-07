@@ -13,7 +13,7 @@ const createBookMutation = gql`
 `;
 
 /** 書籍登録フック */
-export const useCreateBook = () => {
+const useCreateBook = () => {
   const [createBook] = useMutation(createBookMutation);
 
   // prettier-ignore
@@ -98,3 +98,5 @@ export const useCreateBook = () => {
     sendCreateBook,
   };
 };
+
+export default useCreateBook;
