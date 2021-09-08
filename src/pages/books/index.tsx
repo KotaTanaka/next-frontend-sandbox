@@ -1,4 +1,3 @@
-import { Button } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -6,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { bookListState } from '@/atoms/book';
 import BookList from '@/components/books/BookList';
 import CreateBookModal from '@/components/books/CreateBookModal';
+import ButtonPrimary from '@/components/partials/Button/ButtonPrimary';
 import PageHeading from '@/components/partials/PageHeading';
 import useCreateBook from '@/hooks/useCreateBook';
 import useGetBookList from '@/hooks/useGetBookList';
@@ -35,7 +35,7 @@ const BookListPage: NextPage = () => {
     sendCreateBook,
   } = useCreateBook();
 
-  const onClickModalOk = useCallback(async () => {
+  const onClickModalSubmit = useCallback(async () => {
     await sendCreateBook();
     await refetch();
     closeModal();
@@ -55,13 +55,13 @@ const BookListPage: NextPage = () => {
   return (
     <div>
       <PageHeading title="書籍一覧" />
-      <Button onClick={openModal}>書籍登録</Button>
+      <ButtonPrimary label="書籍登録" width="240px" onClick={openModal} />
       <div className="mt-16">
         <BookList books={bookList.books} />
       </div>
       <CreateBookModal
         isOpen={isCreateModalOpen}
-        onOk={onClickModalOk}
+        onSubmit={onClickModalSubmit}
         onCancel={onClickModalCancel}
         params={createBookParams}
         onChangeName={changeName}

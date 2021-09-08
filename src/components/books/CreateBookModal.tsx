@@ -1,6 +1,5 @@
-import { Button } from '@chakra-ui/react';
-
 import AppModal from '@/components/partials/AppModal';
+import ButtonPrimary from '@/components/partials/Button/ButtonPrimary';
 import FormInput from '@/components/partials/Form/FormInput';
 import { ICreateBookBody } from '@/interfaces/request/book';
 
@@ -87,7 +86,7 @@ const CreateBookModal: React.FC<Props> = (props) => {
         onChange={onChangeReleasedAt}
       />
       <div className="mt-8 text-right">
-        <Button onClick={onSubmit}>登録</Button>
+        <ButtonPrimary label="登録" onClick={onSubmit} />
       </div>
     </AppModal>
   );
