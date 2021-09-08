@@ -24,6 +24,7 @@ const BookListPage: NextPage = () => {
     openModal,
     closeModal,
     createBookParams,
+    resetCreateBookParams,
     changeName,
     changeOutline,
     changeAuthor,
@@ -31,7 +32,6 @@ const BookListPage: NextPage = () => {
     changeCategory,
     changePrice,
     changeReleasedAt,
-    resetCreateBookParams,
     sendCreateBook,
   } = useCreateBook();
 

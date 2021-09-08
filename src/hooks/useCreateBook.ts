@@ -1,6 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 
 import { createBookParamsState } from '@/atoms/book';
 import { ICreateBookBody } from '@/interfaces/request/book';
@@ -22,6 +22,7 @@ const useCreateBook = () => {
 
   // prettier-ignore
   const [createBookParams, setCreateBookParams] = useRecoilState<ICreateBookBody>(createBookParamsState);
+  const resetCreateBookParams = useResetRecoilState(createBookParamsState);
 
   const openModal = () => setIsCreateModalOpen(true);
 
@@ -69,18 +70,7 @@ const useCreateBook = () => {
 
   const sendCreateBook = async () => {
     await createBook({ variables: { data: createBookParams } });
-  };
-
-  const resetCreateBookParams = () => {
-    setCreateBookParams({
-      name: '',
-      outline: '',
-      author: '',
-      publisher: '',
-      category: '',
-      price: 0,
-      releasedAt: '2020-04-01',
-    });
+    resetCreateBookParams();
   };
 
   return {
@@ -88,6 +78,7 @@ const useCreateBook = () => {
     openModal,
     closeModal,
     createBookParams,
+    resetCreateBookParams,
     changeName,
     changeOutline,
     changeAuthor,
@@ -95,7 +86,6 @@ const useCreateBook = () => {
     changeCategory,
     changePrice,
     changeReleasedAt,
-    resetCreateBookParams,
     sendCreateBook,
   };
 };
