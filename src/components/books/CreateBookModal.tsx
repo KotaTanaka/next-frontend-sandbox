@@ -38,42 +38,42 @@ const CreateBookModal: React.FC<Props> = (props) => {
       <FormInput
         value={params.name}
         label="タイトル"
-        required
+        rules={['required']}
         marginY="8px"
         onChange={onChangeName}
       />
       <FormInput
         value={params.outline}
         label="あらすじ"
-        required
+        rules={['required']}
         marginY="8px"
         onChange={onChangeOutline}
       />
       <FormInput
         value={params.author}
         label="著者"
-        required
+        rules={['required']}
         marginY="8px"
         onChange={onChangeAuthor}
       />
       <FormInput
         value={params.publisher}
         label="出版社"
-        required
+        rules={['required']}
         marginY="8px"
         onChange={onChangePublisher}
       />
       <FormInput
         value={params.category}
         label="カテゴリ"
-        required
+        rules={['required']}
         marginY="8px"
         onChange={onChangeCategory}
       />
       <FormInput
         value={params.price}
         label="価格"
-        required
+        rules={['required']}
         number
         marginY="8px"
         onChange={onChangePrice}
@@ -81,7 +81,7 @@ const CreateBookModal: React.FC<Props> = (props) => {
       <FormInput
         value={params.releasedAt}
         label="発売日"
-        required
+        rules={['required']}
         marginY="8px"
         onChange={onChangeReleasedAt}
       />
