@@ -1,6 +1,9 @@
+import { useMemo } from 'react';
+
 import AppModal from '@/components/partials/AppModal';
 import ButtonPrimary from '@/components/partials/Button/ButtonPrimary';
 import FormInput from '@/components/partials/Form/FormInput';
+import useValidation from '@/hooks/useValidation';
 import { ICreateBookBody } from '@/interfaces/request/book';
 
 interface Props {
@@ -32,6 +35,22 @@ const CreateBookModal: React.FC<Props> = (props) => {
     onChangePrice,
     onChangeReleasedAt,
   } = props;
+
+  const { convertRulesToErrors } = useValidation();
+
+  /** 登録ボタンの活性判定 */
+  // prettier-ignore
+  const isSubmitButtonClickable = useMemo<boolean>(() => {
+    const nameErrors = convertRulesToErrors(['required'], params.name);
+    const outlineErrors = convertRulesToErrors(['required'], params.outline);
+    const authorErrors = convertRulesToErrors(['required'], params.author);
+    const publisherErrors = convertRulesToErrors(['required'], params.publisher);
+    const categoryErrors = convertRulesToErrors(['required'], params.category);
+    const priceErrors = convertRulesToErrors(['required'], params.price);
+    const releasedAtErrors = convertRulesToErrors(['required'], params.releasedAt);
+
+    return [...nameErrors, ...outlineErrors, ...authorErrors, ...publisherErrors, ...categoryErrors, ...priceErrors, ...releasedAtErrors].length === 0;
+  }, [params]);
 
   return (
     <AppModal isOpen={isOpen} title="書籍登録" onClose={onCancel}>
@@ -86,7 +105,11 @@ const CreateBookModal: React.FC<Props> = (props) => {
         onChange={onChangeReleasedAt}
       />
       <div className="mt-8 text-right">
-        <ButtonPrimary label="登録" onClick={onSubmit} />
+        <ButtonPrimary
+          label="登録"
+          disabled={!isSubmitButtonClickable}
+          onClick={onSubmit}
+        />
       </div>
     </AppModal>
   );
