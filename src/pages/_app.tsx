@@ -1,22 +1,17 @@
 import 'tailwindcss/tailwind.css';
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 
 import Layout from '@/layout/Layout';
-
-const client = new ApolloClient({
-  uri: `${process.env.NEXT_PUBLIC_SERVER_HOST}/graphql`,
-  cache: new InMemoryCache(),
-  ssrForceFetchDelay: 100,
-});
+import { apolloClient } from '@/utils/ApolloUtils';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <RecoilRoot>
-      <ApolloProvider client={client}>
+      <ApolloProvider client={apolloClient}>
         <ChakraProvider>
           <Layout>
             <Component {...pageProps} />

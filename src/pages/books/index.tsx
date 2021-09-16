@@ -1,4 +1,3 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { GetServerSideProps, NextPage } from 'next';
 import { useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -11,6 +10,7 @@ import PageHeading from '@/components/partials/PageHeading';
 import useCreateBook from '@/hooks/useCreateBook';
 import useGetBookList, { booksQuery } from '@/hooks/useGetBookList';
 import { IGetBookListResponse } from '@/interfaces/response/book';
+import { apolloClient } from '@/utils/ApolloUtils';
 
 export interface IProps {
   initialBooksData: IGetBookListResponse;
@@ -87,13 +87,7 @@ const BookListPage: NextPage<IProps> = (props) => {
 export default BookListPage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const client = new ApolloClient({
-    uri: `${process.env.NEXT_PUBLIC_SERVER_HOST}/graphql`,
-    cache: new InMemoryCache(),
-    ssrForceFetchDelay: 100,
-  });
-
-  const response = await client.query<IGetBookListResponse>({
+  const response = await apolloClient.query<IGetBookListResponse>({
     query: booksQuery,
   });
 
