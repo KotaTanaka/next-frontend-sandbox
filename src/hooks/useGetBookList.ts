@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import { bookListState } from '@/atoms/book';
 import { IGetBookListResponse } from '@/interfaces/response/book';
 
-const booksQuery = gql`
+export const booksQuery = gql`
   {
     books {
       id
@@ -15,19 +15,34 @@ const booksQuery = gql`
 `;
 
 /** 書籍一覧取得フック */
-const useGetBookList = () => {
-  // prettier-ignore
-  const { loading, error, data, refetch } = useQuery<IGetBookListResponse>(booksQuery);
+const useGetBookList = (serverData?: IGetBookListResponse) => {
+  const {
+    data: clientData,
+    error,
+    refetch,
+  } = useQuery<IGetBookListResponse>(booksQuery);
 
   const setBookList = useSetRecoilState<IGetBookListResponse>(bookListState);
 
+  // サーバーサイドで取得したデータをセット
   useEffect(() => {
-    if (data) {
-      setBookList(data);
+    if (serverData) {
+      setBookList(serverData);
     }
-  }, [data]);
+  }, [serverData]);
 
-  return { loading, error, refetch };
+  // クライアントサイドで取得したデータをセット
+  useEffect(() => {
+    if (clientData) {
+      setBookList(clientData);
+    }
+  }, [clientData]);
+
+  return {
+    loading: !clientData && !serverData,
+    error,
+    refetch,
+  };
 };
 
 export default useGetBookList;

@@ -1,4 +1,5 @@
-import { NextPage } from 'next';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { GetServerSideProps, NextPage } from 'next';
 import { useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -8,12 +9,19 @@ import CreateBookModal from '@/components/books/CreateBookModal';
 import ButtonPrimary from '@/components/partials/Button/ButtonPrimary';
 import PageHeading from '@/components/partials/PageHeading';
 import useCreateBook from '@/hooks/useCreateBook';
-import useGetBookList from '@/hooks/useGetBookList';
+import useGetBookList, { booksQuery } from '@/hooks/useGetBookList';
 import { IGetBookListResponse } from '@/interfaces/response/book';
 
+export interface IProps {
+  initialBooksData: IGetBookListResponse;
+}
+
 /** 書籍一覧ページ */
-const BookListPage: NextPage = () => {
-  const { loading, error, refetch } = useGetBookList();
+const BookListPage: NextPage<IProps> = (props) => {
+  const { initialBooksData } = props;
+
+  /** 書籍一覧取得ロジック */
+  const { loading, error, refetch } = useGetBookList(initialBooksData);
 
   // prettier-ignore
   const bookList: IGetBookListResponse = useRecoilValue<IGetBookListResponse>(bookListState);
@@ -77,3 +85,21 @@ const BookListPage: NextPage = () => {
 };
 
 export default BookListPage;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const client = new ApolloClient({
+    uri: `${process.env.NEXT_PUBLIC_SERVER_HOST}/graphql`,
+    cache: new InMemoryCache(),
+    ssrForceFetchDelay: 100,
+  });
+
+  const response = await client.query<IGetBookListResponse>({
+    query: booksQuery,
+  });
+
+  return {
+    props: {
+      initialBooksData: response.data,
+    },
+  };
+};
