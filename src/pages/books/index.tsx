@@ -23,8 +23,8 @@ const BookListPage: NextPage<IProps> = (props) => {
   /** 書籍一覧取得ロジック */
   const { loading, error, refetch } = useGetBookList(initialBooksData);
 
-  // prettier-ignore
-  const bookList: IGetBookListResponse = useRecoilValue<IGetBookListResponse>(bookListState);
+  /** 書籍一覧 */
+  const bookList = useRecoilValue<IGetBookListResponse>(bookListState);
 
   /** 書籍登録ロジック */
   const {
@@ -86,7 +86,7 @@ const BookListPage: NextPage<IProps> = (props) => {
 
 export default BookListPage;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<IProps> = async () => {
   const response = await apolloClient.query<IGetBookListResponse>({
     query: booksQuery,
   });
