@@ -9,7 +9,7 @@ import ButtonPrimary from '@/components/partials/Button/ButtonPrimary';
 import PageHeading from '@/components/partials/PageHeading';
 import useCreateBook from '@/hooks/useCreateBook';
 import useGetBookList, { booksQuery } from '@/hooks/useGetBookList';
-import { IGetBookListResponse } from '@/interfaces/response/book';
+import { IBook, IGetBookListResponse } from '@/interfaces/response/book';
 import { apolloClient } from '@/utils/ApolloUtils';
 
 export interface IProps {
@@ -24,7 +24,7 @@ const BookListPage: NextPage<IProps> = (props) => {
   const { loading, error, refetch } = useGetBookList(initialBooksData);
 
   /** 書籍一覧 */
-  const bookList = useRecoilValue<IGetBookListResponse>(bookListState);
+  const bookList = useRecoilValue<IBook[]>(bookListState);
 
   /** 書籍登録ロジック */
   const {
@@ -65,7 +65,7 @@ const BookListPage: NextPage<IProps> = (props) => {
       <PageHeading title="書籍一覧" />
       <ButtonPrimary label="書籍登録" width="240px" onClick={openModal} />
       <div className="mt-16">
-        <BookList books={bookList.books} />
+        <BookList books={bookList} />
       </div>
       <CreateBookModal
         isOpen={isCreateModalOpen}

@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { bookOneState } from '@/atoms/book';
 import PageHeading from '@/components/partials/PageHeading';
 import useGetBookOne, { getBookOneQuery } from '@/hooks/useGetBookOne';
-import { IGetBookOneResponse } from '@/interfaces/response/book';
+import { IBook, IGetBookOneResponse } from '@/interfaces/response/book';
 import { apolloClient } from '@/utils/ApolloUtils';
 import { getIdFromParsedUrlQuery } from '@/utils/StringUtils';
 
@@ -28,7 +28,7 @@ const BookDetailPage: NextPage<IProps> = (props) => {
   const { loading, error } = useGetBookOne(bookId, initialBookData);
 
   /** 書籍詳細 */
-  const book = useRecoilValue<IGetBookOneResponse>(bookOneState);
+  const book = useRecoilValue<IBook>(bookOneState);
 
   // TODO ローディング
   if (loading) return <p>Loading...</p>;
@@ -38,7 +38,7 @@ const BookDetailPage: NextPage<IProps> = (props) => {
 
   return (
     <div>
-      <PageHeading title={book.book.id} />
+      <PageHeading title={book.id} />
     </div>
   );
 };

@@ -3,8 +3,9 @@ import { useEffect, useMemo } from 'react';
 import { useSetRecoilState } from 'recoil';
 
 import { bookOneState } from '@/atoms/book';
-import { IGetBookOneResponse } from '@/interfaces/response/book';
+import { IBook, IGetBookOneResponse } from '@/interfaces/response/book';
 
+/** book query */
 export const getBookOneQuery = (id: string) => {
   return gql`
     {
@@ -36,19 +37,19 @@ const useGetBookOne = (id: string, serverData?: IGetBookOneResponse) => {
     refetch,
   } = useQuery<IGetBookOneResponse>(bookOneQuery);
 
-  const setBookOne = useSetRecoilState<IGetBookOneResponse>(bookOneState);
+  const setBookOne = useSetRecoilState<IBook>(bookOneState);
 
   // サーバーサイドで取得したデータをセット
   useEffect(() => {
     if (serverData) {
-      setBookOne(serverData);
+      setBookOne(serverData.book);
     }
   }, [serverData]);
 
   // クライアントサイドで取得したデータをセット
   useEffect(() => {
     if (clientData) {
-      setBookOne(clientData);
+      setBookOne(clientData.book);
     }
   }, [clientData]);
 

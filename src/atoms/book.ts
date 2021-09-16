@@ -1,10 +1,7 @@
 import { atom } from 'recoil';
 
 import { ICreateBookBody } from '@/interfaces/request/book';
-import {
-  IGetBookListResponse,
-  IGetBookOneResponse,
-} from '@/interfaces/response/book';
+import { IBook } from '@/interfaces/response/book';
 
 const initialCreateBookParams: ICreateBookBody = {
   name: '',
@@ -16,23 +13,19 @@ const initialCreateBookParams: ICreateBookBody = {
   releasedAt: '2020-04-01',
 };
 
-const initialBookList: IGetBookListResponse = {
-  books: [],
-};
+const initialBookList: IBook[] = [];
 
-const initialBookOne: IGetBookOneResponse = {
-  book: {
-    id: '',
-    name: '',
-    outline: '',
-    author: '',
-    publisher: '',
-    category: '',
-    price: 0,
-    releasedAt: '',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
+const initialBookOne: IBook = {
+  id: '',
+  name: '',
+  outline: '',
+  author: '',
+  publisher: '',
+  category: '',
+  price: 0,
+  releasedAt: '',
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
 /** 書籍登録パラメータ */
@@ -41,14 +34,14 @@ export const createBookParamsState = atom({
   default: initialCreateBookParams,
 });
 
-/** 書籍一覧取得レスポンス */
-export const bookListState = atom<IGetBookListResponse>({
+/** 書籍一覧データ */
+export const bookListState = atom<IBook[]>({
   key: 'bookList',
   default: initialBookList,
 });
 
-/** 書籍詳細取得レスポンス */
-export const bookOneState = atom<IGetBookOneResponse>({
+/** 書籍詳細データ */
+export const bookOneState = atom<IBook>({
   key: 'bookOne',
   default: initialBookOne,
 });
