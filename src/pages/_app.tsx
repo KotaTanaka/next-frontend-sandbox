@@ -10,6 +10,7 @@ import Layout from '@/layout/Layout';
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_SERVER_HOST}/graphql`,
   cache: new InMemoryCache(),
+  ssrForceFetchDelay: 100,
 });
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
