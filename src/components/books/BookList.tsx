@@ -1,8 +1,8 @@
 import BookListItem from '@/components/books/BookListItem';
-import { IBookListItem } from '@/interfaces/response/book';
+import { IBook } from '@/interfaces/response/book';
 
 interface Props {
-  books: IBookListItem[];
+  books: IBook[];
 }
 
 /** 書籍リスト */

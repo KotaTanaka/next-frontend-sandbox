@@ -1,10 +1,15 @@
 /** 書籍一覧取得レスポンス */
 export interface IGetBookListResponse {
-  books: IBookListItem[];
+  books: IBook[];
 }
 
-/** 書籍リスト要素 */
-export interface IBookListItem {
+/** 書籍詳細取得レスポンス */
+export interface IGetBookOneResponse {
+  book: IBook;
+}
+
+/** 書籍データ要素 */
+export interface IBook {
   id: string;
   name: string;
   outline: string;
