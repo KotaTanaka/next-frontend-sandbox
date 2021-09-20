@@ -10,9 +10,11 @@ const BookList: React.FC<Props> = (props) => {
   const { books } = props;
 
   return (
-    <div className="mt-16">
+    <div className="mx-auto w-4/5">
       {books.map((book) => (
-        <BookListItem key={book.id} book={book} />
+        <div key={book.id} className="mt-4 first:mt-0">
+          <BookListItem book={book} />
+        </div>
       ))}
     </div>
   );

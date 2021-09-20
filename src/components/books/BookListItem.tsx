@@ -12,15 +12,15 @@ const BookListItem: React.FC<Props> = (props) => {
   const { book } = props;
 
   return (
-    <div>
-      <Link
-        key={book.id}
-        href={PAGE_URL.BOOK}
-        as={PAGE_URL.BOOK.replace('[id]', book.id)}
-      >
-        <a className="m-4 cursor-pointer">{book.name}</a>
-      </Link>
-    </div>
+    <Link
+      key={book.id}
+      href={PAGE_URL.BOOK}
+      as={PAGE_URL.BOOK.replace('[id]', book.id)}
+    >
+      <a className="flex justify-center items-center h-16 hover:bg-green-50 rounded border transform hover:scale-105">
+        {book.name}
+      </a>
+    </Link>
   );
 };
 

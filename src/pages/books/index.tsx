@@ -63,7 +63,6 @@ const BookListPage: NextPage<IProps> = (props) => {
   return (
     <div>
       <PageHeading title="書籍一覧" />
-      <ButtonPrimary label="書籍登録" width="240px" onClick={openModal} />
       <div className="mt-16">
         <BookList books={bookList} />
       </div>
@@ -80,6 +79,9 @@ const BookListPage: NextPage<IProps> = (props) => {
         onChangePrice={changePrice}
         onChangeReleasedAt={changeReleasedAt}
       />
+      <div className="mt-16">
+        <ButtonPrimary label="新規登録" width="240px" onClick={openModal} />
+      </div>
     </div>
   );
 };
