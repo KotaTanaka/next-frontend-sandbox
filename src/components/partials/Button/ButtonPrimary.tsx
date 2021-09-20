@@ -15,6 +15,7 @@ const ButtonPrimary: React.FC<Props> = (props) => {
 
   return (
     <Button
+      colorScheme="green"
       disabled={disabled}
       width={width ?? 'full'}
       height={height ?? '40px'}
