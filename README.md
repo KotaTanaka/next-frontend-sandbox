@@ -7,37 +7,28 @@
 Next + TypeScript + CSS in JS でのフロントエンド開発の素振り  
 書籍管理アプリ
 
-## Technology
+## Tech Stack
 
-* [Next.js](https://nextjs.org)
-* [TypeScript](https://github.com/microsoft/TypeScript)
-* GraphQL Client ... [Apollo Client](https://www.apollographql.com/docs/react)
-* State Management ... [Recoil](https://recoiljs.org)
-* CSS ... [Tailwind CSS](https://tailwindcss.com)
-* UI Components ... [Ant Design](https://chakra-ui.com)
+- Framework ... [Next.js](https://nextjs.org)
+- Language ... [TypeScript](https://github.com/microsoft/TypeScript)
+- GraphQL Client ... [Apollo Client](https://www.apollographql.com/docs/react)
+- State Management ... [Recoil](https://recoiljs.org)
+- CSS ... [Tailwind CSS](https://tailwindcss.com)
+- UI Components ... [Chakra UI](https://chakra-ui.com)
 
-## Requirement
+## Requirements
 
-* Node `v15.x`
+- Node `v16.x`
 
 ## Getting Started
 
-#### Install
+```sh
+# Install packages
+yarn
 
-```bash
-$ yarn
-```
+# Serve at http://localhost:3091
+yarn dev
 
-#### Run
-
-```bash
-$ yarn dev
-```
-
-→ http://localhost:3091
-
-#### Build
-
-```bash
-$ yarn build
+# Build
+yarn build
 ```
