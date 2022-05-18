@@ -1,15 +1,16 @@
-import { GetServerSideProps, NextPage } from 'next';
+import { useDisclosure } from '@chakra-ui/react';
+import type { GetServerSideProps, NextPage } from 'next';
 import { useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { bookListState } from '@/atoms/book';
 import BookList from '@/components/books/BookList';
-import CreateBookModal from '@/components/books/CreateBookModal';
+import EditBookModal from '@/components/books/EditBookModal';
 import ButtonPrimary from '@/components/partials/Button/ButtonPrimary';
 import PageHeading from '@/components/partials/PageHeading';
 import useCreateBook from '@/hooks/useCreateBook';
 import useGetBookList, { booksQuery } from '@/hooks/useGetBookList';
-import { IBook, IGetBookListResponse } from '@/interfaces/response/book';
+import type { IBook, IGetBookListResponse } from '@/interfaces/response/book';
 import { apolloClient } from '@/utils/ApolloUtils';
 
 export interface IProps {
@@ -27,32 +28,26 @@ const BookListPage: NextPage<IProps> = (props) => {
   const bookList = useRecoilValue<IBook[]>(bookListState);
 
   /** 書籍登録ロジック */
+  const { createBookParams, resetValues, changeValue, createBook } =
+    useCreateBook();
+
+  /** 登録モーダル制御 */
   const {
-    isCreateModalOpen,
-    openModal,
-    closeModal,
-    createBookParams,
-    resetCreateBookParams,
-    changeName,
-    changeOutline,
-    changeAuthor,
-    changePublisher,
-    changeCategory,
-    changePrice,
-    changeReleasedAt,
-    sendCreateBook,
-  } = useCreateBook();
+    isOpen: isModalOpen,
+    onOpen: openModal,
+    onClose: closeModal,
+  } = useDisclosure();
 
   const onClickModalSubmit = useCallback(async () => {
-    await sendCreateBook();
+    await createBook();
     await refetch();
     closeModal();
-  }, [sendCreateBook, refetch, closeModal]);
+  }, [createBook, refetch, closeModal]);
 
   const onClickModalCancel = useCallback(() => {
-    resetCreateBookParams();
+    resetValues();
     closeModal();
-  }, [resetCreateBookParams, closeModal]);
+  }, [resetValues, closeModal]);
 
   // TODO ローディング
   if (loading) return <p>Loading...</p>;
@@ -66,18 +61,19 @@ const BookListPage: NextPage<IProps> = (props) => {
       <div className="mt-16">
         <BookList books={bookList} />
       </div>
-      <CreateBookModal
-        isOpen={isCreateModalOpen}
+      <EditBookModal
+        isOpen={isModalOpen}
+        type="create"
         onSubmit={onClickModalSubmit}
         onCancel={onClickModalCancel}
         params={createBookParams}
-        onChangeName={changeName}
-        onChangeOutline={changeOutline}
-        onChangeAuthor={changeAuthor}
-        onChangePublisher={changePublisher}
-        onChangeCategory={changeCategory}
-        onChangePrice={changePrice}
-        onChangeReleasedAt={changeReleasedAt}
+        onChangeName={(value: string) => changeValue('name', value)}
+        onChangeOutline={(value: string) => changeValue('outline', value)}
+        onChangeAuthor={(value: string) => changeValue('author', value)}
+        onChangePublisher={(value: string) => changeValue('publisher', value)}
+        onChangeCategory={(value: string) => changeValue('category', value)}
+        onChangePrice={(value: number) => changeValue('price', value)}
+        onChangeReleasedAt={(value: string) => changeValue('releasedAt', value)}
       />
       <div className="mt-16">
         <ButtonPrimary label="新規登録" width="240px" onClick={openModal} />

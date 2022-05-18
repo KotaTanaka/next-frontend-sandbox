@@ -4,13 +4,17 @@ import AppModal from '@/components/partials/AppModal';
 import ButtonPrimary from '@/components/partials/Button/ButtonPrimary';
 import FormInput from '@/components/partials/Form/FormInput';
 import useValidation from '@/hooks/useValidation';
-import { ICreateBookBody } from '@/interfaces/request/book';
+import type {
+  ICreateBookBody,
+  IUpdateBookBody,
+} from '@/interfaces/request/book';
 
 interface Props {
   isOpen: boolean;
+  type: 'create' | 'update';
   onSubmit: () => void;
   onCancel: () => void;
-  params: ICreateBookBody;
+  params: ICreateBookBody | IUpdateBookBody;
   onChangeName: (value: string) => void;
   onChangeOutline: (value: string) => void;
   onChangeAuthor: (value: string) => void;
@@ -20,10 +24,11 @@ interface Props {
   onChangeReleasedAt: (value: string) => void;
 }
 
-/** 書籍登録モーダル */
-const CreateBookModal: React.FC<Props> = (props) => {
+/** 書籍登録/編集モーダル */
+const EditBookModal: React.FC<Props> = (props) => {
   const {
     isOpen,
+    type,
     onSubmit,
     onCancel,
     params,
@@ -106,7 +111,7 @@ const CreateBookModal: React.FC<Props> = (props) => {
       />
       <div className="mt-8 text-right">
         <ButtonPrimary
-          label="登録"
+          label={type === 'create' ? '登録する' : '更新する'}
           disabled={!isSubmitButtonClickable}
           onClick={onSubmit}
         />
@@ -115,4 +120,4 @@ const CreateBookModal: React.FC<Props> = (props) => {
   );
 };
 
-export default CreateBookModal;
+export default EditBookModal;
