@@ -1,7 +1,10 @@
 import { atom } from 'recoil';
 
-import { ICreateBookBody } from '@/interfaces/request/book';
-import { IBook } from '@/interfaces/response/book';
+import type {
+  ICreateBookBody,
+  IUpdateBookBody,
+} from '@/interfaces/request/book';
+import type { IBook } from '@/interfaces/response/book';
 
 const initialCreateBookParams: ICreateBookBody = {
   name: '',
@@ -12,6 +15,8 @@ const initialCreateBookParams: ICreateBookBody = {
   price: 0,
   releasedAt: '2020-04-01',
 };
+
+const initialUpdateBookParams: IUpdateBookBody = {};
 
 const initialBookList: IBook[] = [];
 
@@ -32,6 +37,12 @@ const initialBookOne: IBook = {
 export const createBookParamsState = atom({
   key: 'createBookParams',
   default: initialCreateBookParams,
+});
+
+/** 書籍編集パラメータ */
+export const updateBookParamsState = atom({
+  key: 'updateBookParams',
+  default: initialUpdateBookParams,
 });
 
 /** 書籍一覧データ */

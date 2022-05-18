@@ -1,17 +1,20 @@
 import { IconButton } from '@chakra-ui/button';
 import { ArrowBackIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { GetServerSideProps, NextPage } from 'next';
+import { useDisclosure } from '@chakra-ui/react';
+import type { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { bookOneState } from '@/atoms/book';
 import BookDetailTable from '@/components/books/BookDetailTable';
+import EditBookModal from '@/components/books/EditBookModal';
 import PageHeading from '@/components/partials/PageHeading';
 import { PAGE_URL } from '@/constants';
 import useGetBookOne, { getBookOneQuery } from '@/hooks/useGetBookOne';
-import { IBook, IGetBookOneResponse } from '@/interfaces/response/book';
+import useUpdateBook from '@/hooks/useUpdateBook';
+import type { IBook, IGetBookOneResponse } from '@/interfaces/response/book';
 import { apolloClient } from '@/utils/ApolloUtils';
 import { getIdFromParsedUrlQuery } from '@/utils/StringUtils';
 
@@ -30,22 +33,39 @@ const BookDetailPage: NextPage<IProps> = (props) => {
   }, [router.query]);
 
   /** 書籍詳細取得ロジック */
-  const { loading, error } = useGetBookOne(bookId, initialBookData);
+  const { loading, error, refetch } = useGetBookOne(bookId, initialBookData);
 
   /** 書籍詳細 */
   const book = useRecoilValue<IBook>(bookOneState);
 
+  /** 書籍編集ロジック */
+  const { updateBookParams, setInitialValues, changeValue, updateBook } =
+    useUpdateBook(book);
+
+  /** 編集モーダル制御 */
+  const {
+    isOpen: isModalOpen,
+    onOpen: openModal,
+    onClose: closeModal,
+  } = useDisclosure();
+
   /** 編集ボタン押下 */
   const handleClickEdit = useCallback(() => {
-    // TODO 編集モーダルを開く
-    console.log('click edit.');
-  }, []);
+    setInitialValues();
+    openModal();
+  }, [setInitialValues, openModal]);
 
   /** 削除ボタン押下 */
   const handleClickDelete = useCallback(() => {
     // TODO 削除確認ダイアログを開く
     console.log('click delete.');
   }, []);
+
+  const onClickModalSubmit = useCallback(async () => {
+    await updateBook();
+    await refetch();
+    closeModal();
+  }, [updateBook, refetch, closeModal]);
 
   // TODO ローディング
   if (loading) return <p>Loading...</p>;
@@ -81,6 +101,20 @@ const BookDetailPage: NextPage<IProps> = (props) => {
           <a className="ml-2 hover:underline">一覧に戻る</a>
         </Link>
       </div>
+      <EditBookModal
+        isOpen={isModalOpen}
+        type="update"
+        onSubmit={onClickModalSubmit}
+        onCancel={closeModal}
+        params={updateBookParams}
+        onChangeName={(value: string) => changeValue('name', value)}
+        onChangeOutline={(value: string) => changeValue('outline', value)}
+        onChangeAuthor={(value: string) => changeValue('author', value)}
+        onChangePublisher={(value: string) => changeValue('publisher', value)}
+        onChangeCategory={(value: string) => changeValue('category', value)}
+        onChangePrice={(value: number) => changeValue('price', value)}
+        onChangeReleasedAt={(value: string) => changeValue('releasedAt', value)}
+      />
     </div>
   );
 };
