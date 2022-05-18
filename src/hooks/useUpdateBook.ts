@@ -2,6 +2,7 @@ import { gql, useMutation } from '@apollo/client';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 
 import { updateBookParamsState } from '@/atoms/book';
+import useToast from '@/hooks/useToast';
 import type { IUpdateBookBody } from '@/interfaces/request/book';
 import type { IBook } from '@/interfaces/response/book';
 
@@ -16,6 +17,7 @@ const updateBookMutation = gql`
 /** 書籍編集フック */
 const useUpdateBook = (book: IBook) => {
   const [updateBookFunction] = useMutation(updateBookMutation);
+  const { toastSuccess } = useToast();
 
   // prettier-ignore
   const [updateBookParams, setUpdateBookParams] = useRecoilState<IUpdateBookBody>(updateBookParamsState);
@@ -39,10 +41,12 @@ const useUpdateBook = (book: IBook) => {
     setUpdateBookParams((currentState) => ({ ...currentState, [name]: value }));
   };
 
-  const updateBook = async () =>
-    updateBookFunction({
+  const updateBook = async () => {
+    await updateBookFunction({
       variables: { data: updateBookParams, id: book.id },
     });
+    toastSuccess('更新しました');
+  };
 
   return {
     updateBookParams,
