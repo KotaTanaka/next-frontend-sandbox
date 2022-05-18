@@ -4,14 +4,16 @@ import { useDisclosure } from '@chakra-ui/react';
 import type { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { bookOneState } from '@/atoms/book';
 import BookDetailTable from '@/components/books/BookDetailTable';
 import EditBookModal from '@/components/books/EditBookModal';
+import ConfirmDialog from '@/components/partials/ConfirmDialog';
 import PageHeading from '@/components/partials/PageHeading';
 import { PAGE_URL } from '@/constants';
+import useDeleteBook from '@/hooks/useDeleteBook';
 import useGetBookOne, { getBookOneQuery } from '@/hooks/useGetBookOne';
 import useUpdateBook from '@/hooks/useUpdateBook';
 import type { IBook, IGetBookOneResponse } from '@/interfaces/response/book';
@@ -42,30 +44,40 @@ const BookDetailPage: NextPage<IProps> = (props) => {
   const { updateBookParams, setInitialValues, changeValue, updateBook } =
     useUpdateBook(book);
 
+  /** 書籍削除ロジック */
+  const { deleteBook } = useDeleteBook(book.id);
+
   /** 編集モーダル制御 */
   const {
-    isOpen: isModalOpen,
-    onOpen: openModal,
-    onClose: closeModal,
+    isOpen: isEditModalOpen,
+    onOpen: openEditModal,
+    onClose: closeEditModal,
+  } = useDisclosure();
+
+  /** 削除確認ダイアログ制御 */
+  const {
+    isOpen: isConfirmDialogOpen,
+    onOpen: openConfirmDialog,
+    onClose: closeConfirmDialog,
   } = useDisclosure();
 
   /** 編集ボタン押下 */
   const handleClickEdit = useCallback(() => {
     setInitialValues();
-    openModal();
-  }, [setInitialValues, openModal]);
-
-  /** 削除ボタン押下 */
-  const handleClickDelete = useCallback(() => {
-    // TODO 削除確認ダイアログを開く
-    console.log('click delete.');
-  }, []);
+    openEditModal();
+  }, [setInitialValues, openEditModal]);
 
   const onClickModalSubmit = useCallback(async () => {
     await updateBook();
     await refetch();
-    closeModal();
-  }, [updateBook, refetch, closeModal]);
+    closeEditModal();
+  }, [updateBook, refetch, closeEditModal]);
+
+  const onClickDeleteOK = useCallback(async () => {
+    closeConfirmDialog();
+    await deleteBook();
+    await router.push(PAGE_URL.BOOKS);
+  }, [closeConfirmDialog, deleteBook, refetch]);
 
   // TODO ローディング
   if (loading) return <p>Loading...</p>;
@@ -92,7 +104,7 @@ const BookDetailPage: NextPage<IProps> = (props) => {
           colorScheme="red"
           aria-label="Delete Button"
           icon={<DeleteIcon />}
-          onClick={handleClickDelete}
+          onClick={openConfirmDialog}
         />
       </div>
       <div className="flex justify-center items-center mt-16">
@@ -102,10 +114,10 @@ const BookDetailPage: NextPage<IProps> = (props) => {
         </Link>
       </div>
       <EditBookModal
-        isOpen={isModalOpen}
+        isOpen={isEditModalOpen}
         type="update"
         onSubmit={onClickModalSubmit}
-        onCancel={closeModal}
+        onCancel={closeEditModal}
         params={updateBookParams}
         onChangeName={(value: string) => changeValue('name', value)}
         onChangeOutline={(value: string) => changeValue('outline', value)}
@@ -114,6 +126,13 @@ const BookDetailPage: NextPage<IProps> = (props) => {
         onChangeCategory={(value: string) => changeValue('category', value)}
         onChangePrice={(value: number) => changeValue('price', value)}
         onChangeReleasedAt={(value: string) => changeValue('releasedAt', value)}
+      />
+      <ConfirmDialog
+        isOpen={isConfirmDialogOpen}
+        title="削除しますか？"
+        description={`「${book.name}」を削除します。`}
+        onOK={onClickDeleteOK}
+        onCancel={closeConfirmDialog}
       />
     </div>
   );
